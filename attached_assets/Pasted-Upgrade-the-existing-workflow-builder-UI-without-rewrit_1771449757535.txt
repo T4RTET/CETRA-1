@@ -1,0 +1,117 @@
+Upgrade the existing workflow builder UI without rewriting the architecture.
+
+Goal: expand card functionality and move all card configuration into a structured right-side settings panel with categorized menus and optional advanced mode.
+
+⸻
+
+1. Right-Side Unified Card Settings Panel
+
+When a card is selected:
+ • Open a persistent settings panel on the right
+ • Remove inline settings inside cards
+ • All configuration must live in this panel
+
+The panel should contain collapsible categories:
+
+Categories:
+
+• Basic Settings
+• Execution Logic
+• Timing & Intervals
+• Account Targeting
+• Error Handling
+• Advanced Settings
+
+Each category must:
+ • be collapsible
+ • animate open/close smoothly
+ • remember last opened state per session
+
+Only Basic Settings should be expanded by default.
+
+⸻
+
+2. Advanced Settings Toggle
+
+At the top of the panel add:
+
+“Advanced Mode” toggle slider
+
+Behavior:
+
+OFF → show only essential settings
+ON → reveal all advanced categories and fields
+
+This toggle must:
+ • animate reveal of hidden sections
+ • not reload the card
+ • not reset values
+ • work instantly
+
+Advanced mode is per user session, not per card.
+
+⸻
+
+3. New Functional Settings to Add
+
+Add the following capabilities to cards:
+
+• Website / target URL field
+• Retry strategy selector
+• Delay randomization range
+• Execution priority
+• Tranche/group selector
+• Conditional execution rules
+• Fail-safe stop toggle
+• Logging level selector
+• Max attempts limit
+• Success confirmation rule
+• Timeout behavior
+
+Each of these must appear in logical categories.
+
+⸻
+
+4. UX Requirements
+ • Settings panel scrollable with sticky header
+ • Smooth hover and focus states
+ • Dark futuristic dashboard style
+ • Neon accent for active inputs
+ • Tooltips for complex options
+ • Input validation UI feedback
+ • No layout shift when toggling categories
+
+⸻
+
+5. Card Interaction Behavior
+
+Selecting a card:
+ • highlights it
+ • loads its settings in the panel
+ • updates live when changed
+
+Switching cards:
+ • preserves previous card values
+ • updates panel instantly
+ • no re-render lag
+
+⸻
+
+6. Performance Constraints
+ • Do not re-render the whole canvas
+ • Only update selected card state
+ • Keep transitions GPU-accelerated
+ • Avoid heavy DOM rebuilds
+
+⸻
+
+7. Future-Proof Structure
+
+Organize settings as:
+
+card.config.basic
+card.config.timing
+card.config.execution
+card.config.advanced
+
+So new categories can be added later without UI rewrite.

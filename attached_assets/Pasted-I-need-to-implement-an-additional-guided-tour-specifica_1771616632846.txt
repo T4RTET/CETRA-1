@@ -1,0 +1,177 @@
+I need to implement an additional guided tour specifically for the Card Settings panel inside the Workflow Builder.
+
+This tour must explain what each settings section does and how to configure a card properly.
+
+This is separate from the main builder tour.
+
+⸻
+
+🎯 Goal
+
+When user opens a card for the first time (or clicks “Help inside card”),
+show contextual arrows and tooltips explaining:
+ • What the card does
+ • What each settings category controls
+ • What Basic vs Advanced mode means
+ • What required fields are
+ • What delays / retries do
+ • What execution behavior means
+
+⸻
+
+🧠 Trigger Logic
+ • Show this tour when:
+localStorage key “cardSettingsTourCompleted” is NOT set
+OR user clicks “Help” icon inside settings panel
+ • After finishing:
+set “cardSettingsTourCompleted” = true
+
+⸻
+
+🗂️ Required Tour Steps
+
+Step 1 — Card Title / Type
+
+Target: Card header
+Explain:
+ • This is the type of action this card performs
+ • It defines what the automation step does
+ • Changing card type resets configuration
+
+⸻
+
+Step 2 — Basic Settings Section
+
+Target: Basic settings accordion
+Explain:
+ • These are required core parameters
+ • Without these, the card cannot execute
+ • Keep configuration minimal for simple workflows
+
+⸻
+
+Step 3 — Input Fields
+
+Target: First input field
+Explain:
+ • This is a required parameter
+ • Must be valid for execution
+ • Some fields support variables or dynamic values
+
+If validation exists → mention validation rules.
+
+⸻
+
+Step 4 — Delay Settings
+
+Target: Delay field
+Explain:
+ • Delay controls when the action executes
+ • Helps simulate natural behavior
+ • Useful for automation timing control
+
+⸻
+
+Step 5 — Retry Logic
+
+Target: Retry settings
+Explain:
+ • Retry defines how many times system reattempts on failure
+ • Prevents workflow interruption
+ • Higher retries may increase execution time
+
+⸻
+
+Step 6 — Advanced Mode Toggle
+
+Target: Advanced Mode
+Explain:
+ • Enables extended configuration
+ • Includes hidden technical parameters
+ • Recommended only for experienced users
+
+When toggled during tour → briefly show expanded options.
+
+⸻
+
+Step 7 — Execution Behavior
+
+Target: Execution type (if exists)
+Explain:
+ • Defines whether action is sequential / parallel / conditional
+ • Affects overall workflow logic
+
+⸻
+
+Step 8 — Save / Apply Changes
+
+Target: Apply button
+Explain:
+ • Changes are not active until saved
+ • Always confirm configuration before running workflow
+
+⸻
+
+🎨 UI Requirements
+ • Panel-only overlay (do NOT dim entire builder)
+ • Highlight only settings panel
+ • Arrow pointing to exact field
+ • Smooth transitions between steps
+ • Step counter (1 / X)
+ • Back / Next / Skip / Finish buttons
+ • Close if user clicks outside panel
+
+⸻
+
+⚙️ Technical Requirements
+ • Must dynamically detect visible settings (Basic vs Advanced)
+ • If accordion collapsed → auto-expand during tour
+ • If Advanced disabled → auto-enable temporarily
+ • Recalculate tooltip position if panel scrolls
+ • Prevent settings modification while tour active (optional but recommended)
+
+Use data attributes like:
+
+data-tour=“card-header”
+data-tour=“basic-settings”
+data-tour=“input-field”
+data-tour=“delay-setting”
+data-tour=“retry-setting”
+data-tour=“advanced-toggle”
+data-tour=“execution-mode”
+data-tour=“apply-button”
+
+⸻
+
+📦 Architecture
+
+Steps must be JSON-driven:
+
+const cardSettingsTour = [
+{
+target: “card-header”,
+title: “Action Type”,
+description: “This defines what this card does.”
+}
+]
+
+This allows easy updates later.
+
+⸻
+
+🚫 Avoid
+ • Layout shifts
+ • Scrolling the entire page
+ • Breaking builder drag logic
+ • Tooltip flickering
+ • Overlay blocking panel width incorrectly
+
+⸻
+
+🎯 Expected Result
+
+User opens card →
+Settings panel opens →
+Arrow highlights header →
+Explains what card does →
+Guides user through all configuration options →

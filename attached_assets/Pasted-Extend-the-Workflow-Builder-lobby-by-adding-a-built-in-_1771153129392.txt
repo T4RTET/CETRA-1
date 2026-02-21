@@ -1,0 +1,174 @@
+Extend the Workflow Builder lobby by adding a built-in interactive guide.
+
+Do NOT rebuild the builder.
+Add a help system integrated into the existing UI.
+
+⸻
+
+GUIDE ENTRY POINT
+
+In the Workflow Builder lobby add:
+
+Button:
+
+“Card Settings Guide”
+
+Top-right corner or near templates.
+
+Click opens:
+
+Full-screen help modal OR side help panel.
+
+Must not reload the page.
+
+Smooth animation.
+
+⸻
+
+GUIDE STRUCTURE
+
+Create a structured visual tutorial explaining action cards.
+
+Guide must include:
+
+• images
+• labeled UI callouts
+• simple explanations
+• beginner-friendly language
+
+Each section scrollable.
+
+⸻
+
+GUIDE SECTIONS
+
+Section 1 — Basic Card Overview
+
+Image of a card with markers.
+
+Explain:
+
+• Target selector
+• URL field
+• Delay
+• Success behavior
+
+Short text under each marker.
+
+⸻
+
+Section 2 — Advanced Settings
+
+Image with expanded advanced panel.
+
+Explain:
+
+• concurrency
+• interval
+• jitter
+• retry logic
+• conditions
+• error handling
+
+Tooltips + examples.
+
+⸻
+
+Section 3 — Timing Logic
+
+Visual diagram:
+
+accounts flowing through timeline.
+
+Explain:
+
+how delays work
+how batching works
+how retries behave
+
+⸻
+
+Section 4 — Risk Indicators
+
+Explain:
+
+safe / medium / risky
+
+What it means for accounts.
+
+⸻
+
+Section 5 — Simulation Mode
+
+Explain preview mode.
+
+Show example animation or mock image.
+
+⸻
+
+IMAGE SYSTEM
+
+Images can be:
+
+• static PNG mockups
+• generated UI screenshots
+• placeholder illustrations
+
+Store in:
+
+/assets/guide/
+
+Lazy load images for performance.
+
+⸻
+
+NAVIGATION
+
+Left sidebar inside guide:
+
+• Overview
+• Advanced
+• Timing
+• Risk
+• Simulation
+
+Click scrolls to section.
+
+⸻
+
+UX BEHAVIOR
+
+Guide modal must:
+
+• close with ESC
+• close button top right
+• remember last opened section
+• smooth scroll
+• dark SaaS theme
+• readable typography
+
+⸻
+
+QUICK ACCESS FROM CARDS
+
+Inside each action card:
+
+small icon:
+
+“?”
+
+Click opens guide directly to relevant section.
+
+Context aware navigation.
+
+⸻
+
+GOAL
+
+User must understand cards in 2 minutes.
+
+Guide should feel like:
+
+Figma / Notion onboarding help.
+
+Professional. Clean. Friendly.

@@ -1,0 +1,170 @@
+Upgrade the existing Referrals page inside the dashboard.
+Do NOT rebuild the whole dashboard.
+Only enhance the referral system UI and logic.
+
+Goal: create a gamified referral dashboard with levels, rewards and live stats.
+
+Dark premium SaaS style.
+Cards layout.
+Crypto startup aesthetic.
+Smooth hover glow.
+
+⸻
+
+Referral page layout
+
+Top hero section:
+
+Title:
+“Invite friends. Earn credits.”
+
+Subtitle:
+“Get rewarded every time your referrals subscribe.”
+
+Referral link box:
+copy button
+share buttons (Telegram / X / Discord)
+
+Small text:
+“You earn 20% of every payment in platform credits”
+
+⸻
+
+Live referral stats cards
+
+Row of 4 stat cards:
+
+Active referrals
+Total earned credits
+Current level
+Lifetime commission %
+
+Cards animate counters on load.
+
+⸻
+
+Referral levels system
+
+Create a levels progress section.
+
+Title:
+“Your referral level”
+
+Visual progress bar with milestones.
+
+Level cards:
+
+Level 1 — Starter
+1–4 active referrals
+→ 20% credits
+
+Level 2 — Growth
+5–9 active
+→ 30% credits
+→ 20% subscription discount
+
+Level 3 — Partner
+10+ active
+→ 10% lifetime commission
+→ Partner status badge
+
+Level 4 — Ambassador
+50+ active
+→ Ambassador badge
+→ Exclusive rewards placeholder
+
+Each level card shows:
+
+requirements
+unlocked perks
+lock/unlock state
+glow when active
+
+⸻
+
+Referral activity table
+
+Section title:
+“Referral activity”
+
+Table columns:
+
+User ID
+Plan purchased
+Payment amount
+Your reward
+Status
+
+Status badges:
+Pending / Active / Expired
+
+Scrollable container.
+
+⸻
+
+Credits wallet panel
+
+Side card or section:
+
+Title:
+“Credits wallet”
+
+Shows:
+
+Available credits
+Lifetime earned
+Credits used
+
+Button:
+“Apply credits to subscription”
+
+Tooltip:
+“Credits automatically reduce your next payment”
+
+⸻
+
+Gamification elements
+
+Add:
+
+Achievement badges
+“First referral”
+“5 referrals”
+“Top partner”
+
+Small trophy icons.
+
+Hover shows tooltip.
+
+⸻
+
+Empty state
+
+If no referrals:
+
+Friendly message:
+
+“Start inviting friends to unlock rewards”
+
+Big CTA:
+“Copy referral link”
+
+⸻
+
+Micro animations
+
+Progress bar fills smoothly
+Cards glow on hover
+Numbers animate
+Confetti effect when reaching new level
+
+⸻
+
+Goal:
+
+This page should feel like a Web3 growth dashboard.
+
+Motivating.
+Reward-focused.
+Addictive.
+Clean SaaS UI.

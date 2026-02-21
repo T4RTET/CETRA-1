@@ -1,0 +1,113 @@
+Upgrade the dashboard to support a freemium subscription model with soft paywall logic.
+
+Do NOT block access to the dashboard.
+Users must be able to explore the UI and build workflows, but execution should be locked behind a subscription.
+
+Implement the following behavior:
+
+⸻
+
+FREE PLAN RULES
+
+Users on the Free plan can:
+
+• Access dashboard
+• Use workflow builder
+• Create and save workflows
+• Configure cards and settings
+• View analytics
+• Simulate workflows
+
+Users on the Free plan cannot:
+
+• Run real automation
+• Execute multi-account workflows
+• Use advanced execution features
+
+⸻
+
+EXECUTION PAYWALL
+
+When a Free user clicks:
+
+“Run”, “Start automation”, or any execution button
+
+Show a modal popup:
+
+Title:
+Unlock execution
+
+Text:
+Upgrade your plan to run real automations and scale workflows.
+
+Buttons:
+→ Upgrade plan (primary glowing button)
+→ Continue in free mode (secondary, closes modal)
+
+Free mode continues to allow simulation only.
+
+Do NOT allow execution unless user upgrades.
+
+⸻
+
+FREE PLAN STATUS BANNER
+
+At the top of dashboard add a small non-intrusive banner:
+
+“You are on Free Plan — upgrade to run automations”
+
+Include a small upgrade button.
+
+This banner should be visible but not aggressive.
+
+⸻
+
+LOCKED FEATURES UI
+
+Add lock icons to premium features:
+
+• Multi-account execution
+• Smart routing
+• Advanced scheduling
+• Priority execution
+
+When user clicks locked feature:
+
+Open upgrade modal instead of executing action.
+
+⸻
+
+UPGRADE MODAL STYLE
+
+Dark glassmorphism modal
+Centered
+Smooth fade animation
+Premium neon accent
+
+Modal should feel like a SaaS upsell, not an error.
+
+⸻
+
+OPTIONAL: FREE TRIAL EXECUTIONS
+
+Allow 3 real executions for Free users.
+
+After the 3rd run:
+
+Force upgrade modal.
+
+Track this count per user in backend state.
+
+⸻
+
+UX GOAL
+
+User should:
+
+• Explore product freely
+• Build workflows
+• Feel invested
+• Hit paywall only when trying to execute
+
+No aggressive blocking.
+Monetization happens at the moment of intent.

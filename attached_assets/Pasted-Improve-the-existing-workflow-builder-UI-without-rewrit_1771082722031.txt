@@ -1,0 +1,112 @@
+Improve the existing workflow builder UI without rewriting the architecture.
+
+1. Fix cursor bug
+
+There is a cursor issue when dragging nodes:
+the cursor becomes stuck or incorrect after drag.
+
+Requirements:
+
+• Cursor should be grab when hovering a node
+• Cursor should be grabbing while dragging
+• After drag ends → cursor resets to default
+• No ghost cursor states
+• No stuck pointer after release
+• Dragging must feel smooth and native
+
+Implement proper mouse event cleanup:
+
+mousedown → dragging start
+mousemove → dragging
+mouseup → remove listeners
+
+Ensure listeners are removed on mouseup and mouseleave.
+
+Also prevent text selection while dragging:
+
+user-select: none;
+
+Only active during drag.
+
+⸻
+
+2. Visible connection lines between nodes
+
+Currently connections are unclear or overlapping.
+
+Add a clean visual connection system:
+
+Requirements:
+
+• Smooth curved lines between nodes (Bezier style)
+• Neon blue glowing stroke
+• Lines update in real-time while dragging
+• No overlapping clutter
+• Auto reroute if nodes move
+• Lines stay readable on dark background
+
+Style:
+
+• Stroke gradient blue → purple
+• Subtle glow
+• 2px width
+• Smooth animation on connect
+
+Use SVG overlay layer:
+
+<svg class="connection-layer"></svg>
+
+Connections should:
+
+• Attach to node anchor points
+• Recalculate on node movement
+• Avoid sharp angles
+• Use cubic Bezier curves
+
+Add hover effect:
+
+• When hovering a line → highlight connection
+• Slight glow increase
+
+⸻
+
+3. Improve connection logic
+
+Each node should have:
+
+• Input anchor (left)
+• Output anchor (right)
+
+Connections only allowed:
+
+output → input
+
+Prevent:
+
+input → input
+output → output
+
+Add visual feedback:
+
+• Anchor glows when connectable
+• Invalid connection shows red flash
+
+⸻
+
+4. UX polish
+
+Add:
+
+• Smooth snapping when nodes align
+• Grid background (subtle dots)
+• Zoom + pan canvas support
+• No jitter while dragging
+• 60fps animations
+
+⸻
+
+Goal
+
+The workflow board should feel like a professional node editor:
+
+clean, readable, premium.

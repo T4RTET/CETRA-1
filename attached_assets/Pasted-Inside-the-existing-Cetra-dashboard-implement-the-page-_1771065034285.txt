@@ -1,0 +1,210 @@
+Inside the existing Cetra dashboard, implement the page that opens when the user clicks the left sidebar tab:
+
+👉 “Workflow Builder”
+
+This is NOT a standalone app.
+It must be a page inside the dashboard layout.
+
+Use the current dashboard shell:
+left sidebar + top header + main content area.
+
+Tech stack:
+Node.js backend
+HTML + CSS + vanilla JS frontend
+No frameworks
+Modular JS structure
+
+⸻
+
+PAGE GOAL
+
+Create a professional visual workflow constructor for crypto drop automation.
+
+Users build workflows using draggable cards (nodes) that connect together.
+
+Think:
+automation SaaS builder
+like Zapier / n8n / Figma canvas
+
+Premium crypto UI.
+
+⸻
+
+PAGE STRUCTURE
+
+When opening Workflow Builder:
+
+Main content area becomes:
+
+Top toolbar
+Canvas workspace
+Side panels
+
+⸻
+
+TOP TOOLBAR
+
+Fixed horizontal toolbar:
+
+• Title: Workflow Builder
+• Save workflow button
+• Run test button
+• Export JSON
+• Import JSON
+• Zoom controls
+• Clear canvas
+
+Buttons glow on hover.
+
+⸻
+
+MAIN CANVAS
+
+Center = large infinite draggable canvas
+
+Features:
+
+• drag camera
+• zoom in/out
+• snap to grid
+• smooth animations
+• animated background grid
+
+Canvas must feel fluid.
+
+⸻
+
+LEFT PANEL — CARD LIBRARY
+
+Vertical draggable component list:
+
+Cards:
+
+• Wallet Action
+• Delay
+• Split Tranche
+• Repeat Loop
+• Conditional
+• Airdrop Claim
+• Swap Action
+• Custom Script
+
+Users drag cards onto canvas.
+
+Cards snap to grid.
+
+⸻
+
+RIGHT PANEL — SETTINGS
+
+Dynamic panel opens when a card is selected.
+
+Each card has editable controls:
+
+Time interval:
+• seconds / minutes / hours
+• custom schedule input
+
+Tranche settings:
+• percentage slider
+• split count
+• randomize toggle
+
+Execution mode:
+• sequential
+• parallel
+• smart routing
+
+Wallet allocation:
+• % distribution
+• wallet priority
+
+Add sliders, toggles, animated inputs.
+
+⸻
+
+CARD DESIGN
+
+Each node card:
+
+• glass dark panel
+• neon blue glow border
+• smooth hover animation
+• connection ports
+• mini header
+• icon + label
+
+Inside card:
+
+Mini timeline preview
+Example:
+“Every 4h for 7 days”
+
+⸻
+
+CONNECTION SYSTEM
+
+Users connect cards visually.
+
+Connections:
+
+• curved glowing lines
+• animated flow direction
+• smooth transitions
+• snap to ports
+
+Show flow logic clearly.
+
+⸻
+
+EXTRA FEATURES
+
+Add system controls:
+
+• Undo / redo
+• Auto-save workflow
+• Simulation preview mode
+• Animated execution simulation
+
+Simulation mode:
+flow pulses through nodes.
+
+⸻
+
+UI STYLE
+
+Dark blue futuristic SaaS theme
+
+Glass panels
+Neon accents
+Soft gradients
+Crypto premium look
+
+Smooth:
+
+fade
+slide
+glow animations
+
+Minimal but high-end.
+
+⸻
+
+RESPONSIVENESS
+
+Support:
+
+• zoom scaling
+• drag navigation
+• resize panels
+• mobile-friendly layout
+
+⸻
+
+IMPORTANT
+
+This page must integrate into the existing dashboard router.
+
+Do NOT rebuild dashboard layout.
+
+Only replace the main content area when Workflow Builder tab is active.

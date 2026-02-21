@@ -1,0 +1,180 @@
+Do NOT rebuild the app.
+Modify the existing workflow builder only.
+
+Fix bugs + add new features.
+
+⸻
+
+1. FIX DRAG BUG (CRITICAL)
+
+There is a bug:
+
+After dragging a node, it stays attached to the cursor.
+
+This must be fixed permanently.
+
+Implement strict drag lifecycle:
+ • drag starts on mousedown
+ • dragging happens on mousemove
+ • drag ends on mouseup
+ • drag must also stop on:
+ • mouseleave
+ • window blur
+ • ESC key
+
+Only one node can be dragged at a time.
+
+Create a global drag state controller:
+
+dragState = {
+  active: false,
+  nodeId: null
+}
+
+On drag end:
+ • remove event listeners
+ • reset dragState
+ • release cursor
+ • snap node to grid
+
+Dragging must never persist after mouseup.
+
+⸻
+
+2. REAL VISIBLE CONNECTION LINES
+
+Current connection system is unclear.
+
+Replace with real visual connection lines:
+ • SVG bezier curves
+ • neon glowing line
+ • smooth animation when connecting
+ • visible endpoints
+ • lines must auto-update when nodes move
+
+Rules:
+ • lines should never overlap incorrectly
+ • lines redraw on every drag
+ • arrow indicator for flow direction
+ • hover highlight on line
+ • click line → delete connection
+
+Connections should feel like Figma / node editors.
+
+⸻
+
+3. WORKFLOW LIBRARY SCREEN (NEW ENTRY SCREEN)
+
+When user opens Workflow Builder:
+
+Do NOT open canvas immediately.
+
+First show a workflow library dashboard.
+
+Layout:
+ • grid of saved workflows
+ • each card shows:
+ • name
+ • last edited
+ • status
+ • run count
+ • edit button
+
+Top buttons:
+ • New Workflow
+ • Import
+ • Templates
+
+⸻
+
+4. TEMPLATE SYSTEM
+
+When user clicks “New Workflow”:
+
+Show template selector modal:
+
+Options:
+ 1. Testnet template
+ 2. Social activities template
+ 3. Blank workflow
+
+Each template loads a pre-built base workflow.
+
+Testnet template includes:
+ • wallet action
+ • delay loop
+ • repeat node
+ • airdrop claim
+
+Social template includes:
+ • website action
+ • social interaction node
+ • delay
+ • repeat
+
+Blank = empty canvas.
+
+⸻
+
+5. NODE IMPROVEMENTS
+
+Add advanced node capabilities:
+
+Each node must support:
+ • interval settings
+ • duration
+ • tranche split
+ • repeat logic
+ • error handling mode
+ • retry attempts
+ • link field (URL input)
+ • label rename
+ • enable/disable toggle
+
+Add settings panel when clicking node.
+
+Nodes must store config in JSON.
+
+⸻
+
+6. ADD NEW NODE TYPES
+
+Add these to node library:
+ • Website Action
+ • API Call
+ • Conditional Branch
+ • Random Delay
+ • Multi Account Split
+ • Smart Retry
+ • Logging Node
+
+Each with icon + color coding.
+
+⸻
+
+7. VISUAL UX IMPROVEMENTS
+ • snap to grid
+ • zoom in/out canvas
+ • pan canvas with space + drag
+ • minimap preview corner
+ • animated node glow on hover
+ • save animation feedback
+ • simulation preview mode
+
+⸻
+
+8. SAVE SYSTEM
+
+Workflows must:
+ • auto-save locally
+ • manual save button
+ • export JSON
+ • import JSON
+ • version history snapshot
+
+⸻
+
+Build this as an extension of the existing builder.
+
+Do NOT remove current UI.
+Enhance it.

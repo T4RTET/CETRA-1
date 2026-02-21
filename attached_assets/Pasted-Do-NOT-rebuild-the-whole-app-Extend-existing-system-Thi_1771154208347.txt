@@ -1,0 +1,233 @@
+Do NOT rebuild the whole app.
+Extend existing system.
+
+This prompt contains TWO tasks.
+
+⸻
+
+TASK 1 — Rewrite Workflow Builder board renderer
+
+Rewrite the Workflow Builder canvas rendering layer.
+
+Do NOT change workflow logic or data structure.
+Only rebuild the visual board system.
+
+The current board has broken connection lines.
+We are replacing the board renderer.
+
+⸻
+
+NEW BOARD ARCHITECTURE
+
+Canvas must have 3 layers:
+
+Layer 1 — background grid
+Layer 2 — SVG connection layer
+Layer 3 — draggable node layer
+
+Structure:
+
+<div class="canvas">
+  <div class="grid-layer"></div>
+  <svg class="connection-layer"></svg>
+  <div class="node-layer"></div>
+</div>
+
+Connection layer must sit between grid and nodes.
+
+Lines must visually connect cards directly.
+
+No bottom-canvas artifacts.
+
+⸻
+
+COLOR SYSTEM
+
+Background:
+dark blue-gray
+
+Nodes:
+slightly lighter
+
+Connections:
+bright neon cyan
+
+Grid:
+subtle dots
+
+Connections must be instantly visible.
+
+⸻
+
+CONNECTION RULES
+
+• lines attach to anchor centers
+• redraw on node move
+• use canvas coordinate system
+• never use window coordinates
+• no z-index bugs
+• smooth bezier curves
+• 2px cyan stroke + glow
+• update on zoom/pan
+
+Use requestAnimationFrame during drag.
+
+⸻
+
+FIX COORDINATE BUG
+
+Calculate node positions relative to canvas container:
+
+use getBoundingClientRect of canvas
+subtract canvas origin
+
+All connections use canvas space.
+
+⸻
+
+FINAL GOAL
+
+Professional node editor feel:
+
+stable
+clean
+visible connections
+no ghost lines
+no stuck rendering
+
+⸻
+
+TASK 2 — Build User Settings page structure
+
+Add a full Settings page to the dashboard.
+
+Do NOT rebuild dashboard.
+Add new section only.
+
+Create left sidebar navigation inside Settings.
+
+⸻
+
+SETTINGS STRUCTURE
+
+Section 1 — Account
+
+Fields:
+
+• email display
+• change password
+• 2FA toggle
+• active sessions list
+• logout all devices
+
+⸻
+
+Section 2 — Interface
+
+Fields:
+
+• language selector
+• timezone selector
+• time format
+• compact UI toggle
+
+⸻
+
+Section 3 — Execution Preferences
+
+Global defaults for workflows:
+
+• execution speed profile
+safe / balanced / aggressive
+
+• retry strategy
+conservative / smart / max
+
+• randomization level
+low / medium / high
+
+• failure tolerance
+strict / flexible
+
+These act as defaults for new workflows.
+
+⸻
+
+Section 4 — Security
+
+Fields:
+
+• privacy mode toggle
+• local execution priority
+• data retention duration
+• auto log deletion
+
+Add short explanations under each.
+
+⸻
+
+Section 5 — Notifications
+
+Toggles:
+
+• workflow errors
+• completion alerts
+• billing updates
+• referral rewards
+• product updates
+
+Channels:
+
+email / in-app
+
+⸻
+
+Section 6 — Data Management
+
+Buttons:
+
+• export workflows
+• import workflows
+• backup settings
+• reset environment
+
+Add confirmation modal.
+
+⸻
+
+Section 7 — Advanced Mode
+
+Toggle:
+
+Enable advanced mode
+
+Reveals:
+
+• debug logs
+• experimental features
+• extended diagnostics
+
+Hidden unless enabled.
+
+⸻
+
+SETTINGS UX RULES
+
+• clean SaaS layout
+• dark theme
+• section cards
+• smooth transitions
+• no clutter
+• beginner friendly
+• advanced hidden unless enabled
+
+⸻
+
+FINAL GOAL
+
+Settings page should feel like:
+
+professional control center
+secure
+customizable
+powerful but clean

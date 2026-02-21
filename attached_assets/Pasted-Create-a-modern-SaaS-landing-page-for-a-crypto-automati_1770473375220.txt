@@ -1,0 +1,87 @@
+Create a modern SaaS landing page for a crypto automation platform called “Cetra”.
+Style: dark blue futuristic SaaS UI, premium, minimalistic, smooth gradients, glassmorphism accents, neon highlights.
+The design should feel clean, high-tech, and trustworthy for crypto users.
+
+IMPORTANT:
+Add smooth scroll animations.
+As the user scrolls, text should slide in softly from the top, and images/mockups should slide in from the right.
+Animations must be subtle, smooth, premium, not flashy.
+Use easing transitions and fade + motion reveal effects.
+
+⸻
+
+HERO SECTION (above the fold):
+Headline:
+Goodbye crypto grind. Hello Cetra.
+
+Subheadline:
+Automate repetitive crypto workflows with a visual builder.
+No coding. Just scale.
+
+CTA button: Start automating
+Secondary button: See how it works
+
+Background: dark animated tech gradient with subtle motion
+
+⸻
+
+SECTION 1 – What we offer
+Headline: What Cetra gives you
+Text:
+A visual automation builder designed for crypto workflows.
+Build once. Run at scale. No coding required.
+
+Visual: drag-and-drop builder dashboard mockup
+
+Scroll animation:
+text slides from top
+image slides from right
+
+⸻
+
+SECTION 2 – How it works
+Headline: Build automation in seconds
+Text:
+Drag blocks. Connect actions. Launch your flow.
+Cetra executes everything automatically.
+
+Visual: block connection workflow
+
+Scroll animation: same reveal behavior
+
+⸻
+
+SECTION 3 – Scale
+Headline: Run hundreds of actions effortlessly
+Text:
+Repeat workflows across accounts.
+Scale without burning time.
+Automation handles the grind.
+
+Visual: multi-account automation interface
+
+Scroll animation: same reveal behavior
+
+⸻
+
+SECTION 4 – Result
+Headline: Your crypto. On autopilot.
+Text:
+Less manual work. More output. Maximum efficiency.
+
+Visual: clean success dashboard
+
+Scroll animation: same reveal behavior
+
+⸻
+
+FINAL CTA SECTION
+Headline: Start automating today
+Button: Try Cetra
+Subtext: No coding. No complexity. Just automation.
+
+Footer: minimal dark footer with Product / Pricing / Docs / FAQ / Contact
+
+Typography: modern sans-serif, bold headlines
+UX: smooth scrolling, premium SaaS motion design
+Tone: confident, technical, crypto-native

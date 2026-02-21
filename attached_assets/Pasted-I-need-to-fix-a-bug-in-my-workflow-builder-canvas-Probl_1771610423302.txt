@@ -1,0 +1,57 @@
+I need to fix a bug in my workflow builder canvas.
+
+Problem:
+When dragging a card (node), the connection arrows (edges) visually lag behind or do not update their position correctly. The lines should stay perfectly attached to the card while it moves.
+
+⸻
+
+Requirements
+ 1. Connections must update in real-time during drag.
+ 2. No visual delay.
+ 3. Lines must stay anchored to the exact connection points of the card.
+ 4. Performance must remain smooth with 50+ nodes.
+
+⸻
+
+Likely Causes to Fix
+ • Edge positions are calculated only on drop instead of on drag.
+ • DOM measurements (getBoundingClientRect) are not recalculated continuously.
+ • State updates are asynchronous and not tied to animation frame.
+ • Lines are rendered in a different coordinate space than nodes.
+
+⸻
+
+Implementation Instructions
+ 1. Use requestAnimationFrame for updating edge positions during drag.
+ 2. On every drag movement:
+ • Recalculate source and target anchor coordinates.
+ • Immediately update edge state.
+ 3. Ensure both nodes and edges use the same coordinate reference system (canvas offset included).
+ 4. If using transform: translate(), compute positions including transform matrix.
+ 5. Avoid full re-render of entire canvas — update only affected edges.
+ 6. Debounce expensive calculations if needed.
+ 7. If using React:
+ • Store node positions in centralized state.
+ • Recompute connected edges inside a useEffect triggered by position change.
+ • Use useLayoutEffect instead of useEffect for DOM measurements.
+ 8. Ensure edges are rendered in an absolutely positioned SVG overlay that covers the entire canvas.
+ 9. Disable CSS transitions on edges during drag.
+ 10. Use pointer events correctly to avoid event bubbling issues.
+
+⸻
+
+Additional Improvements
+ • Implement edge recalculation only for edges connected to the moved node.
+ • Add smooth cubic Bézier curves instead of straight lines.
+ • Ensure z-index places edges above background but below nodes.
+ • Add a “snap update” mechanism so edges visually lock instantly.
+
+⸻
+
+Expected Result
+
+When a user drags a card:
+ • The arrows must move with it instantly.
+ • No delay.
+ • No offset.
+ • No drifting.

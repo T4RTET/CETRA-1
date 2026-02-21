@@ -1,0 +1,170 @@
+TERMS OF SERVICE (шаблон)
+
+Terms of Service
+
+Last updated: [date]
+
+Welcome to Cetra.
+
+By accessing or using the Cetra platform (“Service”), you agree to be bound by these Terms of Service. If you do not agree, do not use the Service.
+
+1. Description of Service
+
+Cetra is a crypto workflow automation platform that allows users to create automated actions across blockchain networks. The Service is provided “as is” and may evolve over time.
+
+We do not provide financial, investment, or legal advice.
+
+2. Eligibility
+
+You must be at least 18 years old to use the Service.
+By using Cetra, you confirm that you comply with the laws of your jurisdiction.
+
+3. User Responsibility
+
+You are fully responsible for:
+ • your wallets
+ • private keys
+ • automation workflows
+ • blockchain actions you execute
+
+Cetra does not store private keys and cannot recover lost access.
+
+All blockchain transactions are irreversible.
+
+4. Payments
+
+Subscriptions are billed in cryptocurrency.
+All payments are final unless required by law.
+
+We may change pricing with notice.
+
+Failure to maintain an active subscription may suspend access.
+
+5. Risk Disclosure
+
+Cryptocurrency activity involves risk.
+
+You acknowledge:
+ • smart contracts can fail
+ • networks may be unstable
+ • automation can behave unexpectedly
+ • losses may occur
+
+Cetra is not liable for financial losses.
+
+Use at your own risk.
+
+6. Service Availability
+
+We do not guarantee uninterrupted access.
+
+The Service may be modified, paused, or discontinued at any time.
+
+7. Limitation of Liability
+
+To the maximum extent permitted by law:
+
+Cetra is not liable for:
+ • financial loss
+ • lost profits
+ • wallet loss
+ • indirect damages
+ • blockchain failures
+
+You use the platform voluntarily.
+
+8. Termination
+
+We may suspend or terminate accounts that:
+ • abuse the system
+ • violate laws
+ • harm infrastructure
+
+Users may stop using the Service at any time.
+
+9. Changes to Terms
+
+We may update these Terms.
+
+Continued use means acceptance of changes.
+
+10. Contact
+
+For legal questions:
+
+contact@[yourdomain].com
+
+⸻
+
+PRIVACY POLICY (шаблон)
+
+Privacy Policy
+
+Last updated: [date]
+
+Cetra respects your privacy.
+
+This policy explains what we collect and why.
+
+1. Information We Collect
+
+We may collect:
+ • email address
+ • account credentials
+ • usage analytics
+ • device/browser info
+
+We do NOT collect:
+ • private keys
+ • seed phrases
+ • wallet secrets
+
+2. How We Use Information
+
+We use data to:
+ • operate the platform
+ • improve performance
+ • provide support
+ • prevent abuse
+
+We do not sell personal data.
+
+3. Analytics
+
+We may use analytics tools to understand usage patterns.
+
+Data is aggregated and anonymized where possible.
+
+4. Data Security
+
+We use reasonable security practices to protect information.
+
+However, no system is 100% secure.
+
+Use the platform at your own discretion.
+
+5. Third-Party Services
+
+We may rely on external infrastructure providers.
+
+They have their own privacy policies.
+
+6. Data Retention
+
+We keep account data while your account is active.
+
+You may request deletion by contacting support.
+
+7. Children
+
+The Service is not intended for users under 18.
+
+8. Changes to Policy
+
+We may update this policy periodically.
+
+Continued use = acceptance.
+
+9. Contact
+
+privacy@[yourdomain].com

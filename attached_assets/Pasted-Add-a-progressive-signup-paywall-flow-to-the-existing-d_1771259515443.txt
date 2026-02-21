@@ -1,0 +1,120 @@
+Add a progressive signup + paywall flow to the existing dashboard without breaking current UI.
+
+Goal:
+Users can explore and build workflows without an account, but must register to save and subscribe to run execution.
+
+⸻
+
+1. GUEST MODE
+
+Implement guest mode:
+
+• Allow users to open dashboard without login
+• Allow creating workflows in memory (temporary state)
+• Mark session as “Guest” in UI (top bar small badge)
+
+Guest limitations:
+
+• Cannot save workflows permanently
+• Cannot run execution
+• Data is stored only in local session
+
+⸻
+
+2. SIGNUP TRIGGER (PROGRESSIVE SIGNUP)
+
+When guest clicks:
+
+• Save workflow
+OR
+• Export workflow
+OR
+• Leave dashboard with unsaved changes
+
+Show modal:
+
+Title: Create free account
+Text: Save your workflows and access them anytime
+Buttons:
+→ Continue with Google
+→ Sign up with Email
+→ Cancel
+
+Important:
+
+• After signup → automatically save workflow
+• Do NOT lose user progress
+• Smooth modal animation
+• Dark theme matching dashboard
+
+⸻
+
+3. PAYWALL TRIGGER
+
+When user clicks:
+
+• Run workflow
+• Schedule automation
+• Cloud execution features
+
+If user has no subscription:
+
+Show paywall modal:
+
+Title: Upgrade to run automation
+Text: Execution requires an active subscription
+Buttons:
+→ View plans
+→ Start free trial (if enabled)
+→ Cancel
+
+Modal should link to Subscription page.
+
+⸻
+
+4. UX DETAILS
+
+Add:
+
+• Soft blur background when modal opens
+• No page reload
+• Smooth transitions
+• Preserve workflow state always
+
+Guest banner in dashboard top:
+
+“You are in Guest Mode — create an account to save your work”
+
+Small dismissible info bar.
+
+⸻
+
+5. DATA SAFETY
+
+Important behavior:
+
+• Guest workflows stored in localStorage/session
+• After signup → migrate guest workflows to user account
+• No data loss allowed
+
+⸻
+
+6. OPTIONAL (if easy)
+
+Add small onboarding tooltip:
+
+Step 1: Build workflow
+Step 2: Save
+Step 3: Run automation
+
+Only show first visit.
+
+⸻
+
+End result:
+
+User can explore freely
+Signup feels natural
+Paywall appears only at execution moment
+No friction early
+No lost data

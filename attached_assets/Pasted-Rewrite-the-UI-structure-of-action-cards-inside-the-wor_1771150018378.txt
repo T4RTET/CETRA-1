@@ -1,0 +1,139 @@
+Rewrite the UI structure of action cards inside the workflow builder.
+
+Do NOT ignore this.
+
+Each action card must have TWO MODES:
+
+👉 Basic Mode (default)
+👉 Advanced Mode (expandable)
+
+This is a structural UI change, not just adding fields.
+
+⸻
+
+CARD LAYOUT RULE
+
+Every action card must show:
+
+Header
+Basic config
+Advanced toggle button
+
+Advanced settings are hidden by default.
+
+The card must become visually smaller in basic mode.
+
+⸻
+
+BASIC MODE (visible by default)
+
+Only show 4 controls:
+ 1. Account group selector
+ 2. URL / target link
+ 3. Delay before start
+ 4. Success behavior dropdown
+
+That’s it.
+
+No extra controls visible.
+
+The goal is a clean minimal card.
+
+⸻
+
+ADVANCED MODE
+
+Add a clear button inside card:
+
+“Show advanced settings”
+
+When clicked:
+
+card expands vertically
+smooth animation
+reveals advanced panel
+
+⸻
+
+Advanced panel contains:
+
+Target advanced
+
+• concurrency slider
+• execution order toggle
+
+Timing advanced
+
+• interval between accounts
+• jitter/random delay %
+
+Conditions
+
+• skip flagged accounts toggle
+• max retries input
+• stop after failures input
+
+Result handling
+
+• branch on failure dropdown
+• send to error queue toggle
+• notify toggle
+
+Diagnostics
+
+• risk level selector (safe/medium/risky)
+• resource estimate label
+• inline mini logs
+
+⸻
+
+IMPORTANT UI RULES
+
+Basic mode:
+
+• compact
+• beginner-friendly
+• readable in 2 seconds
+
+Advanced mode:
+
+• collapsible section
+• visually separated panel
+• darker background block
+• labeled “Advanced”
+
+⸻
+
+BEHAVIOR
+
+When advanced closes:
+
+values stay saved
+only hidden visually
+
+No data reset.
+
+⸻
+
+UX REQUIREMENTS
+
+• smooth expand/collapse animation
+• no layout jump
+• neon hover glow
+• consistent card width
+• no overflow bugs
+
+⸻
+
+FINAL GOAL
+
+Cards must feel like:
+
+Beginner mode → simple
+Advanced mode → powerful
+
+NOT cluttered by default.
+
+This is a UI restructuring task.
+
+Do not ignore.

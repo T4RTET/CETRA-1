@@ -1,0 +1,187 @@
+Extend the existing dashboard system.
+Do NOT rewrite current logic.
+Add features on top of current tranche/account system.
+
+⸻
+
+1. User-defined account groups (custom tranches)
+
+Allow users to manually create and manage their own account groups.
+
+Rename internal concept:
+
+System tranche = execution batch
+User group = logical account grouping
+
+User groups must persist independently from execution tranches.
+
+⸻
+
+Group management UI
+
+Add new section inside dashboard:
+
+“Account Groups”
+
+User can:
+
+• create group
+• rename group
+• delete group
+• drag accounts into group
+• multi-select accounts
+• move accounts between groups
+
+Each account can belong to only one active group.
+
+Show group cards:
+
+Group name
+number of accounts
+last activity
+status indicator
+
+⸻
+
+Workflow Builder integration
+
+User groups must automatically appear in Workflow Builder.
+
+When building a workflow:
+
+User can assign workflow to:
+
+• specific group
+• multiple groups
+• all accounts
+
+Example:
+
+Workflow A → Group 1
+Workflow B → Group 2 + Group 3
+
+UI:
+
+Group selector dropdown inside workflow card.
+
+Workflow execution respects group assignment.
+
+⸻
+
+Execution mapping
+
+When a workflow runs:
+
+System automatically creates execution tranches
+based on selected group.
+
+Group = logical filter
+Tranche = runtime batch
+
+Do not mix concepts visually.
+
+User sees:
+
+Group → contains accounts
+Execution → runs inside group
+
+⸻
+
+Group overview stats
+
+Each group dashboard card shows:
+
+Success / Partial / Failed
+last run time
+active workflows
+account count
+
+Click group → opens group detail page.
+
+⸻
+
+2. Multi-language dashboard support
+
+Add internationalization layer.
+
+Supported languages:
+
+• English (default)
+• Russian
+• Ukrainian
+• Spanish
+• Korean
+• French
+
+⸻
+
+Language system behavior
+
+Add language selector in top right corner:
+
+Dropdown with flag + language name.
+
+Language change must:
+
+• update UI instantly
+• persist in user profile
+• persist in local storage
+• apply after reload
+
+⸻
+
+Translation architecture
+
+All UI text must be moved to language files:
+
+/i18n/en.json
+/i18n/ru.json
+/i18n/ua.json
+/i18n/es.json
+/i18n/kr.json
+/i18n/fr.json
+
+No hardcoded strings in components.
+
+Use key-based lookup system.
+
+Example:
+
+t(“dashboard.title”)
+
+⸻
+
+Translation coverage
+
+Translate:
+
+Dashboard
+Workflow Builder
+Subscription
+Referrals
+Settings
+Group system
+Errors
+Buttons
+Status labels
+Tooltips
+Notifications
+
+Everything user-facing.
+
+⸻
+
+Fallback logic
+
+If translation key missing:
+
+fallback to English.
+
+No broken UI allowed.
+
+⸻
+
+Performance requirement
+
+Language switching must not reload entire app.
+Only rerender UI text.

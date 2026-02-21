@@ -1,0 +1,179 @@
+Upgrade the existing Subscription page UI.
+Do NOT rebuild the dashboard.
+Only enhance the subscription tab.
+
+Goal: modern SaaS pricing cards with clear value comparison.
+
+⸻
+
+Subscription layout redesign
+
+Convert the subscription page into a pricing card grid.
+
+Layout:
+
+3–4 pricing cards centered
+responsive grid
+premium SaaS look
+dark theme
+glow hover animation
+
+Each plan is a card.
+
+⸻
+
+Pricing cards structure
+
+Each card must include:
+
+Plan name
+Price
+Billing cycle
+Savings badge
+Feature list
+CTA button
+
+Example structure:
+
+Card header:
+Plan name
+Short tagline
+
+Price section:
+$19.99 / month
+or
+$154.99 / year
+
+Savings label:
+“Save 35% vs monthly”
+
+Feature list:
+✔️ Number of accounts supported
+✔️ Workflow slots
+✔️ Automation speed tier
+✔️ Priority execution
+✔️ Error analytics
+✔️ AI assistant (premium only)
+✔️ Referral bonus boost
+✔️ Support tier
+
+CTA button:
+“Upgrade plan”
+or
+“Current plan” (disabled state)
+
+⸻
+
+Plans
+
+Include at least:
+
+Starter (monthly)
+Pro (3 months)
+Advanced (6 months)
+Elite (yearly)
+
+Each higher plan must visually look more premium.
+
+Add highlight glow to the recommended plan.
+
+Badge:
+“Most popular”
+
+⸻
+
+Value comparison
+
+Below cards add comparison section:
+
+Title:
+“Why upgrade?”
+
+Show benefit blocks:
+
+More accounts
+Faster execution
+Lower cost per month
+Premium features
+Priority queue
+
+Mini icons + short text.
+
+⸻
+
+Savings logic
+
+System automatically calculates:
+
+effective monthly price
+percentage saved vs monthly
+
+Display under yearly / multi-month plans:
+
+“You save $XX”
+“35% cheaper”
+
+No static text.
+Must be dynamic.
+
+⸻
+
+Current user plan panel
+
+Above pricing grid show:
+
+Current plan card
+
+Includes:
+
+Plan name
+Renewal date
+Active status
+Next charge
+Upgrade button
+
+If user is on free trial:
+
+show countdown timer.
+
+⸻
+
+Payment support note
+
+Bottom of page:
+
+“Crypto payments supported”
+small icon row
+
+BTC / ETH / USDT / card
+
+⸻
+
+Micro interactions
+
+Hover card → glow border
+Click upgrade → animated press
+Smooth transitions
+Premium SaaS feel
+
+⸻
+
+Empty state
+
+If user has no subscription:
+
+Show:
+
+“You are on Free Mode”
+limited features notice
+CTA: “Unlock full automation”
+
+⸻
+
+Goal:
+This page must feel like Stripe / Linear / Vercel pricing.
+
+Clean.
+Premium.
+Trustworthy.
+Conversion-focused.

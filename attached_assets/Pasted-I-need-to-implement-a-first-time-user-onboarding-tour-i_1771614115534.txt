@@ -1,0 +1,108 @@
+I need to implement a first-time user onboarding tour inside the dashboard.
+
+When a user enters the dashboard for the first time, a guided tutorial with arrows and tooltips must appear.
+
+⸻
+
+🎯 Goal
+
+Create a step-by-step interactive walkthrough that:
+ • Highlights UI elements
+ • Shows explanatory tooltips
+ • Uses animated arrows
+ • Guides the user through the main features
+ • Runs only on first visit
+
+⸻
+
+✅ Core Requirements
+
+1️⃣ Trigger Logic
+ • Show onboarding only if:
+localStorage key “dashboardTourCompleted” is NOT set
+ • After completion:
+set localStorage “dashboardTourCompleted” = true
+ • Add button in Settings → “Replay Tutorial”
+
+⸻
+
+2️⃣ Visual Behavior
+
+Each step must:
+ • Highlight target element (glow or overlay)
+ • Dim background (semi-transparent overlay)
+ • Show tooltip near element
+ • Display animated arrow pointing to element
+ • Show step indicator (e.g., 1/6)
+ • Include buttons:
+ • Next
+ • Back
+ • Skip
+ • Finish (on last step)
+
+⸻
+
+3️⃣ Suggested Steps
+
+Example onboarding flow:
+ 1. Sidebar navigation
+→ Explain main navigation
+ 2. Workflow Builder
+→ Explain how to create automation
+ 3. Templates section
+→ Explain prebuilt templates
+ 4. Referrals
+→ Explain credit system
+ 5. Settings
+→ Explain personalization
+ 6. Profile / Subscription area
+→ Explain plan management
+
+Make steps configurable via JSON so they can be edited later.
+
+⸻
+
+4️⃣ Technical Implementation
+ • Use portal rendering for tooltip layer
+ • Overlay must cover entire screen
+ • Tooltip must auto-position (top/bottom/left/right based on space)
+ • Smooth fade transitions
+ • Prevent scrolling during onboarding
+ • Ensure it works with dark/light theme
+ • Ensure it works on responsive layout
+
+⸻
+
+5️⃣ Edge Cases
+ • If target element is not mounted → wait until available
+ • If sidebar collapsed → auto-open it
+ • If user clicks outside → do not break flow
+ • If window resized → recalculate tooltip position
+
+⸻
+
+6️⃣ UX Quality Requirements
+ • Modern minimal tooltip style
+ • Soft shadow
+ • Rounded corners
+ • Subtle arrow animation (pulse effect)
+ • No flickering
+ • No layout shift
+
+⸻
+
+7️⃣ Expected Result
+
+First time user enters dashboard →
+Screen slightly dims →
+Arrow appears →
+Tooltip explains first feature →
+User clicks Next →
+Guided through entire interface →
+On finish → tour never shows again (unless manually replayed).
+
+⸻
+
+If needed, refactor dashboard structure to support stable element targeting using data attributes like:
+
+data-tour=“workflow-builder”

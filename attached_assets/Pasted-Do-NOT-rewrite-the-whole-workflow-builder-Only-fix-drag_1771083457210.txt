@@ -1,0 +1,160 @@
+Do NOT rewrite the whole workflow builder.
+Only fix drag behavior and implement proper connection lines.
+
+⸻
+
+1. CRITICAL BUG: Node stuck on cursor after drag
+
+Problem:
+After dragging a node, it remains attached to the cursor.
+
+This means drag listeners are not being cleaned properly.
+
+Fix drag lifecycle:
+
+mousedown → start drag
+mousemove → dragging
+mouseup → stop drag
+mouseleave → force stop drag
+blur → emergency stop drag
+
+Implementation requirements:
+
+• Drag state stored in a single global variable
+• Only ONE active drag at a time
+• On mouseup → remove ALL listeners
+• On mouseleave → cancel drag
+• On window blur → cancel drag
+
+Add hard reset function:
+
+function stopDrag() {
+  dragging = false
+  activeNode = null
+  document.body.style.cursor = "default"
+  document.body.classList.remove("dragging")
+  remove all listeners
+}
+
+Call stopDrag() in:
+
+mouseup
+mouseleave
+window.blur
+
+Also:
+
+• Prevent duplicate listeners
+• Prevent nested drag state
+• Ensure cursor resets
+
+During drag:
+
+cursor: grabbing
+user-select: none
+pointer-events: none (only on dragged ghost if needed)
+
+After drag:
+
+restore everything.
+
+Goal:
+Dragging must NEVER persist after release.
+
+⸻
+
+2. Replace fake connection dots with real connection lines
+
+Current system shows floating dots.
+We need real visual connections.
+
+Implement SVG connection layer.
+
+Add once:
+
+<svg id="connectionLayer"></svg>
+
+Position:
+
+position: absolute
+top: 0
+left: 0
+width: 100%
+height: 100%
+pointer-events: none
+
+Each connection is a path:
+
+<path class="connection-line" />
+
+Draw cubic bezier curve:
+
+M startX startY
+C midX startY,
+  midX endY,
+  endX endY
+
+Where:
+
+midX = (startX + endX) / 2
+
+Style:
+
+stroke: #4cc9ff
+stroke-width: 2
+fill: none
+filter: drop-shadow(0 0 6px rgba(76,201,255,.6))
+
+Connections should:
+
+• Update on every drag frame
+• Recalculate on node move
+• Stay attached to anchor points
+• Never overlap node center
+• Always curve smoothly
+
+⸻
+
+3. Anchor logic
+
+Each node has:
+
+.output-anchor (right side)
+.input-anchor (left side)
+
+Only allow:
+
+output → input
+
+When connecting:
+
+• highlight valid anchor
+• reject invalid direction
+
+Temporary preview line while dragging connection.
+
+⸻
+
+4. Performance
+
+Connection redraw must use:
+
+requestAnimationFrame
+
+NOT setInterval.
+
+Goal:
+
+60fps smooth editor.
+
+⸻
+
+Expected result
+
+✔️ Node releases cleanly after drag
+✔️ Cursor never sticks
+✔️ Real visible connection lines
+✔️ Smooth professional node editor feel
+
+No architectural rewrite.
+Only fix behavior + visual connections.

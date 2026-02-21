@@ -1,0 +1,194 @@
+I need to implement a guided onboarding tour specifically for the Workflow Builder interface.
+
+This is NOT for the main dashboard — only for the constructor page.
+
+The tour must explain:
+ • What each area does
+ • How cards work
+ • How connections work
+ • How settings panel works
+ • What Advanced Mode does
+ • How to save and run workflow
+
+⸻
+
+🎯 Goal
+
+When user opens Workflow Builder for the first time, show a step-by-step interactive tour with arrows and contextual tooltips explaining:
+ • Canvas
+ • Cards (nodes)
+ • Connections (edges)
+ • Right settings panel
+ • Template logic
+ • Advanced toggle
+ • Save / Run buttons
+
+Tour must run only once unless manually restarted.
+
+⸻
+
+🧠 Trigger Logic
+ • Check localStorage key: “builderTourCompleted”
+ • If not set → run tour
+ • On finish → set to true
+ • Add button in builder header: “Replay Guide”
+
+⸻
+
+🗺️ Required Tour Steps (Exact Structure)
+
+Step 1 — Canvas Area
+
+Target: Main workflow canvas
+Explain:
+ • This is your workflow canvas
+ • You can drag cards here
+ • Move them freely
+ • Zoom and navigate
+
+⸻
+
+Step 2 — Add Card Button
+
+Target: Add Node / Add Block button
+Explain:
+ • Click here to add a new action card
+ • Cards represent automation steps
+
+⸻
+
+Step 3 — Card (Node)
+
+Target: One existing card
+Explain:
+ • Cards are actions
+ • Each card can be configured
+ • You can drag to reposition
+ • Each card has connection points
+
+Highlight:
+ • Connection handles
+
+⸻
+
+Step 4 — Connections (Edges)
+
+Target: Connection line between two cards
+Explain:
+ • Drag from output to input to create logic flow
+ • Lines define execution order
+ • Workflow runs top → bottom
+
+Important:
+Visually highlight edge clearly.
+
+⸻
+
+Step 5 — Right Settings Panel
+
+Target: Right configuration panel
+Explain:
+ • All card settings appear here
+ • Basic settings are visible by default
+ • Settings are grouped by categories
+
+⸻
+
+Step 6 — Advanced Mode Toggle
+
+Target: Advanced Mode switch
+Explain:
+ • Enable Advanced Mode to access extended parameters
+ • Recommended for experienced users
+
+⸻
+
+Step 7 — Template Info (If template used)
+
+Target: Template label or preset indicator
+Explain:
+ • This workflow was generated from template
+ • You can modify any block
+ • Save custom template anytime
+
+⸻
+
+Step 8 — Save & Run
+
+Target: Save button
+Explain:
+ • Save workflow to your account
+
+Target: Run button
+Explain:
+ • Start automation execution
+
+⸻
+
+🎨 UI Requirements
+ • Full-screen dim overlay
+ • Highlighted element with glow
+ • Animated arrow pointing to element
+ • Tooltip auto-positioning
+ • Smooth fade transitions
+ • Step counter (e.g., 3 / 8)
+ • Buttons: Back / Next / Skip / Finish
+
+⸻
+
+⚙️ Technical Requirements
+ • Use portal layer above canvas
+ • Disable canvas interaction during tour
+ • Pause drag events
+ • Pause edge creation
+ • Auto-scroll to element if needed
+ • If sidebar collapsed → auto open
+ • Handle dynamic canvas positions (nodes move)
+
+Use data attributes like:
+
+data-tour=“canvas”
+data-tour=“add-card”
+data-tour=“node”
+data-tour=“edge”
+data-tour=“settings-panel”
+data-tour=“advanced-toggle”
+data-tour=“save-button”
+
+⸻
+
+🚫 Avoid
+ • Tooltip flickering
+ • Layout shifting
+ • Edge misalignment during highlight
+ • Breaking drag logic
+ • Re-rendering entire canvas
+
+⸻
+
+📦 Architecture
+
+Tour steps must be JSON-driven:
+
+const builderTourSteps = [
+{
+target: “canvas”,
+title: “Workflow Canvas”,
+description: “This is where you build your automation logic.”
+},
+…
+]
+
+So future edits don’t require rewriting logic.
+
+⸻
+
+🎯 Expected Result
+
+User opens builder →
+Screen dims →
+Canvas highlighted →
+Arrow + explanation →
+User clicks Next →
+Guided through full constructor →
+After finish → never shows again unless replayed.

@@ -1,0 +1,166 @@
+Build a crypto payment checkout page for a SaaS platform.
+
+Tech stack: pure HTML + CSS + JS
+Style: modern dark SaaS, clean crypto dashboard aesthetic
+Responsive layout
+Smooth animations
+Professional fintech look
+
+⸻
+
+PAGE PURPOSE
+
+This is a subscription payment page.
+
+User selects a plan → sees payment instructions → sends crypto → confirms transaction.
+
+The goal is clarity + trust + minimal friction.
+
+⸻
+
+LAYOUT STRUCTURE
+
+Centered payment card on dark background.
+
+Top section:
+
+Title:
+“Complete Your Crypto Payment”
+
+Subtitle:
+“Send payment to activate your subscription instantly.”
+
+⸻
+
+PLAN SUMMARY BOX
+
+Show a mini summary card:
+
+• Plan name
+• Price
+• Duration
+• Status: Awaiting payment
+
+Example:
+
+Pro Plan — $49 / month
+
+Card style: glowing border, premium SaaS UI
+
+⸻
+
+CRYPTO PAYMENT BLOCK
+
+Big highlighted section:
+
+Label:
+Send payment to this address
+
+Wallet address:
+
+0xDE62Eb54cD77274c6Ded137Dd19dBa352f6E1480
+
+Features:
+
+• Copy address button
+• QR code placeholder box
+• Network label: “EVM compatible network”
+• Warning text:
+
+“Send only supported EVM assets. Wrong network = lost funds.”
+
+Copy button should show:
+
+✔️ Copied
+
+with animation
+
+⸻
+
+TRANSACTION CONFIRMATION
+
+Below wallet block:
+
+Input field:
+
+“Enter transaction hash”
+
+Button:
+
+Confirm Payment
+
+When clicked:
+
+Show status loader:
+
+“Checking blockchain…”
+
+Then:
+
+Success state:
+✔️ Payment detected → Subscription activated
+
+Error state:
+Transaction not found → Try again
+
+(No real blockchain logic needed yet — simulate with JS)
+
+⸻
+
+PAYMENT METHODS SECTION
+
+Below crypto:
+
+Divider line
+
+Text:
+
+“More payment methods”
+
+Greyed card:
+
+Visa / MasterCard — Coming soon
+
+Disabled style
+
+⸻
+
+SECURITY FOOTER
+
+Small text at bottom:
+
+“Payments are verified on-chain. Cetra never stores your private keys.”
+
+⸻
+
+UX DETAILS
+
+• Smooth fade-in animations
+• Hover glow on buttons
+• Neon accent colors
+• Glassmorphism card style
+• Clean spacing
+• Modern typography
+• Crypto SaaS aesthetic
+
+⸻
+
+OPTIONAL EXTRA
+
+Add a small countdown:
+
+“Invoice expires in 29:58”
+
+Timer decreases live.
+
+If expired:
+
+Show:
+
+Invoice expired — regenerate payment
+
+⸻
+
+Build the page as a complete standalone HTML file with CSS and JS included.
+
+No frameworks. Clean structure. Production-level UI quality.

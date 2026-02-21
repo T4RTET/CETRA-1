@@ -1,0 +1,106 @@
+Build a modern SaaS dashboard UI for a crypto automation platform called Cetra.
+Style: dark blue premium interface, clean, futuristic, similar to Linear / Vercel dashboard.
+Use pure HTML + CSS + JS (no frameworks).
+Responsive layout. Smooth transitions and hover animations.
+
+⸻
+
+AUTH PAGE
+
+Create a login page first.
+
+Requirements:
+ • Centered login card
+ • Dark glassmorphism background
+ • Email field
+ • Password field
+ • Login button
+ • “Continue with Google” button below
+ • Small link: “Don’t have an account? Sign up”
+ • Smooth fade-in animation
+
+After login, redirect to dashboard page.
+
+⸻
+
+DASHBOARD LAYOUT
+
+Layout structure:
+
+Left sidebar navigation
+Main content area on the right
+
+Sidebar should include:
+ • Logo “Cetra”
+ • Dashboard
+ • Workflow Builder
+ • Subscription
+ • Referrals
+ • Settings
+
+Active tab should glow softly.
+
+⸻
+
+DASHBOARD PAGE CONTENT
+
+Title: “Dashboard”
+
+Top stats cards (3 cards in a row):
+ • Agent Status → Online / Offline indicator
+ • Efficiency → percentage value
+ • Total Runs → number counter
+
+Cards should have glowing borders and hover animation.
+
+Below stats:
+
+Add an analytics chart with timeframe selector:
+Buttons:
+ • Last 7 days
+ • Last 30 days
+
+Chart style:
+Smooth line chart
+Neon blue gradient line
+Dark background
+Animated appearance
+
+⸻
+
+WORKFLOW BUILDER PAGE
+
+Placeholder UI:
+Title: “Workflow Builder”
+Subtitle: “Build and automate your crypto workflows”
+Large empty canvas card
+Text inside: “Drag actions here to start”
+
+⸻
+
+SUBSCRIPTION PAGE
+
+Show:
+Current plan
+Renewal date
+Upgrade button
+Crypto payments supported note
+
+⸻
+
+REFERRALS PAGE
+
+Show:
+Referral link box with copy button
+Total referrals counter
+Earnings placeholder
+Text: “Earn rewards by inviting friends”
+
+⸻
+
+Add smooth page transitions when switching sidebar tabs.
+Add hover glow effects to buttons.
+Use futuristic crypto SaaS typography.
+Keep UI minimal and premium.
+
+Entire interface should feel like a professional SaaS dashboard.

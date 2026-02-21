@@ -1,0 +1,168 @@
+Upgrade the existing Workflow Builder action cards UI and logic.
+
+DO NOT rebuild the entire system.
+Modify the existing action card component.
+
+Goal:
+Each action card must have a clean basic mode + expandable advanced settings.
+
+The default view should be simple and readable.
+Advanced mode reveals power-user controls.
+
+⸻
+
+ACTION CARD STRUCTURE
+
+Each card must contain 5 core sections:
+ 1. Target
+ 2. Action Config
+ 3. Timing
+ 4. Conditions
+ 5. Result Handling
+
+Use collapsible sections with smooth animations.
+
+⸻
+
+BASIC MODE (default visible)
+
+Show only essential fields:
+
+Target
+
+• Account group selector dropdown
+• Execution order toggle: Random / Sequential
+
+Action Config
+
+• URL / target link field
+• Action type dropdown
+
+Timing
+
+• Delay before start (simple number input)
+
+Result
+
+• On success → continue
+• On failure → retry once
+
+These must be visible without expanding anything.
+
+⸻
+
+ADVANCED MODE
+
+Add a button:
+
+“Advanced settings ▾”
+
+Click expands full controls.
+
+Inside advanced:
+
+Target Advanced
+
+• Concurrency slider (accounts running in parallel)
+
+Timing Advanced
+
+• Interval between accounts
+• Randomization % (jitter slider)
+
+Conditions Advanced
+
+• Run only if previous step success (toggle)
+• Skip flagged accounts (toggle)
+• Max retries per account
+• Stop workflow after X failures
+
+Result Advanced
+
+• Branch on failure dropdown
+• Send failed accounts to error queue
+• Notify toggle
+
+⸻
+
+EXTRA FEATURES TO ADD
+
+Preview Mode
+
+Add button inside card:
+
+“Simulate with 1 account”
+
+Runs dry preview animation only.
+
+No real execution.
+
+⸻
+
+Account Impact Indicator
+
+Top-right corner of card shows badge:
+
+🟢 Safe
+🟡 Medium
+🔴 Risky
+
+Color-coded glow.
+
+Badge is selectable via dropdown.
+
+⸻
+
+Resource Estimate
+
+Bottom of card:
+
+“Estimated impact: ~X accounts • ~Y minutes”
+
+Auto updates when settings change.
+
+⸻
+
+Inline Logs
+
+Expandable mini log area:
+
+✔️ Success count
+✖️ Failure count
+
+Collapsed by default.
+
+⸻
+
+UX RULES
+
+• Basic mode must look clean and minimal
+• Advanced mode must not overwhelm layout
+• Smooth expand/collapse animations
+• Neon glow hover effects
+• Dark futuristic dashboard style
+• No clutter in default view
+• Advanced settings hidden unless opened
+
+⸻
+
+DO NOT ADD
+
+• Global system settings inside cards
+• Proxy/system configuration
+• Developer/debug flags
+
+Cards should control local behavior only.
+
+⸻
+
+FINAL RESULT
+
+The card should feel:
+
+Simple for beginners
+Powerful for advanced users
+Clean and premium
+
+Do not redesign the entire builder.
+Only enhance the existing card system.

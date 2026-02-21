@@ -1,0 +1,147 @@
+Do NOT rebuild the project.
+Extend the existing auth system.
+
+Add a full Sign Up system with backend + frontend integration.
+
+Use Node.js + Express (same stack as current app).
+
+⸻
+
+1. SIGN UP PAGE UI
+
+Create a Sign Up page matching existing login style.
+
+Requirements:
+ • centered glassmorphism auth card
+ • dark futuristic UI
+ • smooth fade-in animation
+ • responsive
+
+Fields:
+ • email
+ • password
+ • confirm password
+ • checkbox: agree to Terms
+ • Sign Up button
+ • Continue with Google button
+ • link: “Already have an account? Log in”
+
+Validation:
+ • email format check
+ • password min 8 chars
+ • passwords must match
+ • disable button until valid
+
+Show inline error messages.
+
+⸻
+
+2. BACKEND USER SYSTEM
+
+Create user database model.
+
+Use simple local DB:
+ • SQLite or JSON storage
+ • hashed passwords (bcrypt)
+
+User fields:
+
+id
+email
+passwordHash
+createdAt
+plan = "starter"
+credits = 0
+referrals = 0
+language = "en"
+
+
+⸻
+
+3. SIGN UP API
+
+POST /api/signup
+
+Flow:
+ • validate email not used
+ • hash password
+ • create user
+ • auto login after signup
+ • return auth session
+
+Errors:
+ • user exists
+ • invalid input
+ • server error
+
+⸻
+
+4. LOGIN INTEGRATION
+
+Existing login must work with new users.
+
+POST /api/login:
+ • verify bcrypt hash
+ • return session
+
+⸻
+
+5. SESSION SYSTEM
+
+Use simple auth:
+ • JWT OR cookie session
+ • store user ID
+ • protect dashboard routes
+
+Middleware:
+
+requireAuth()
+
+Redirect to login if not authenticated.
+
+⸻
+
+6. DASHBOARD LINKING
+
+After signup:
+
+redirect → dashboard
+
+Dashboard loads user data:
+ • email
+ • plan
+ • credits
+ • referral stats
+
+⸻
+
+7. GOOGLE AUTH PLACEHOLDER
+
+Add Google button UI only.
+
+Click → show modal:
+
+“Google auth coming soon”
+
+(no need full OAuth yet)
+
+⸻
+
+8. SECURITY
+ • hash passwords with bcrypt
+ • sanitize inputs
+ • prevent duplicate accounts
+ • basic rate limit on signup
+
+⸻
+
+9. UX DETAILS
+ • loading spinner on signup
+ • success animation
+ • error toast messages
+ • clean transitions
+
+⸻
+
+Do NOT break existing dashboard.
+Attach auth system to current app.

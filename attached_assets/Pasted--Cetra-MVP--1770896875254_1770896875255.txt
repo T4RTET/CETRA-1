@@ -1,0 +1,250 @@
+ТЗ: редизайн и расширение функционала сайта Cetra
+
+Цель
+
+Довести текущий сайт из MVP-лендинга до production-уровня SaaS:
+
+— усилить доверие
+— повысить конверсию
+— показать продукт как реальный инструмент
+— подготовить к масштабированию рекламы
+
+Редизайн = полировка существующей структуры, не переделка с нуля.
+
+⸻
+
+1. Главная страница — доработка
+
+1.1 Hero
+
+Оставляем слоган.
+
+Добавить подзаголовок:
+
+Automate airdrops, testnets and multi-wallet workflows.
+
+Добавить:
+
+— микро-анимацию фона
+— мягкий glow
+— motion при скролле
+
+CTA:
+
+Primary: Start Automating
+Secondary: See Dashboard
+
+⸻
+
+1.2 Product proof block
+
+Сразу после hero.
+
+Большой mockup dashboard.
+
+Подпись:
+
+Real automation. Real workflows.
+
+Задача: убрать ощущение “идеи”, показать продукт.
+
+⸻
+
+1.3 Features
+
+Переделать в пользу действия:
+
+Не описание → результат.
+
+Пример:
+
+✔ Run hundreds of actions automatically
+✔ Manage multiple wallets
+✔ Launch workflows in one click
+✔ Save hours of manual work
+
+Иконки минималистичные.
+
+⸻
+
+1.4 Trust section
+
+Новый блок:
+
+Security & privacy
+
+✔ No private keys stored
+✔ Local execution
+✔ Encrypted connections
+✔ User-controlled wallets
+
+Это обязательно для крипто-аудитории.
+
+⸻
+
+1.5 Pricing
+
+Добавить:
+
+— % экономии
+— Most Popular badge
+— микро-текст про экономию времени
+
+Карточки должны быть визуально сильнее.
+
+⸻
+
+1.6 Closing CTA
+
+Последний экран:
+
+Stop wasting time. Start automating.
+
+Большая кнопка.
+
+Это конверсионный якорь.
+
+⸻
+
+2. Новые страницы
+
+2.1 Dashboard preview page
+
+Отдельная страница:
+
+/dashboard-preview
+
+Показывает:
+
+— интерфейс
+— графики
+— конструктор
+— статистику
+
+Это продаёт продукт.
+
+⸻
+
+2.2 Documentation page
+
+Минимальный docs hub:
+
+— Getting started
+— Workflows
+— Payments
+— Security
+
+Даже если тексты короткие.
+
+Docs = доверие.
+
+⸻
+
+2.3 Community page
+
+Страница с:
+
+Discord
+Telegram
+Twitter/X
+
+Крипто-продукт без комьюнити = минус доверие.
+
+⸻
+
+2.4 Blog page
+
+Даже если пусто.
+
+Показывает, что проект живой.
+
+⸻
+
+3. Функциональные доработки
+
+3.1 Auth система
+
+Login / Register
+
+— email + password
+— Google auth
+— подтверждение почты
+
+⸻
+
+3.2 User dashboard (MVP)
+
+Внутри аккаунта:
+
+Dashboard:
+— agent status
+— efficiency
+— total runs
+— график активности
+
+Workflow builder:
+— placeholder UI
+
+Subscription:
+— текущий тариф
+— дата окончания
+
+Referrals:
+— ссылка
+— счетчик
+— earnings placeholder
+
+⸻
+
+3.3 Payment flow
+
+Crypto checkout:
+
+— выбор тарифа
+— адрес оплаты
+— подтверждение
+— активация подписки
+
+⸻
+
+3.4 Referral system (MVP)
+
+— персональная ссылка
+— счетчик активных рефералов
+— лог начислений
+
+⸻
+
+4. UX требования
+
+— плавные анимации
+— hover эффекты
+— mobile адаптив
+— быстрый интерфейс
+— SaaS-премиум стиль
+— никаких перегруженных элементов
+
+⸻
+
+5. Приоритеты
+
+Фаза 1 (критично):
+
+✔ Hero правки
+✔ product preview
+✔ trust блок
+✔ pricing улучшение
+✔ login/dashboard MVP
+
+Фаза 2:
+
+✔ docs
+✔ community
+✔ блог
+✔ рефералка
+
+Фаза 3:
+
+✔ AI функции
+✔ advanced builder
+✔ analytics

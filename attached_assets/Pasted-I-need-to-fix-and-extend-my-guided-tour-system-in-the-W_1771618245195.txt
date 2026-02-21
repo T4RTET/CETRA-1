@@ -1,0 +1,153 @@
+I need to fix and extend my guided tour system in the Workflow Builder.
+
+⸻
+
+🐞 1. Fix Bug: Tour Disappears After Step 3
+
+Problem:
+After step 3 the tour overlay disappears completely and does not continue.
+
+Required Fix:
+ 1. Ensure tour state is NOT reset between steps.
+ 2. Do NOT unmount the Tour component until:
+ • User clicks Finish
+ • Or explicitly clicks Skip
+ 3. Make sure step index is stored in state properly:
+ • useRef or centralized store
+ • Not reinitialized on re-render
+ 4. Prevent component remounting when:
+ • Card panel opens
+ • Canvas re-renders
+ • Node position changes
+ 5. If target element is temporarily unavailable:
+ • Wait until element exists (MutationObserver or polling)
+ • Do NOT terminate tour
+ 6. Ensure overlay is rendered in a stable root (Portal to document.body).
+ 7. Add console logging for:
+ • Current step index
+ • Target selector
+ • Element existence
+ 8. Disable any auto-cleanup logic tied to route changes.
+
+Expected result:
+Tour continues beyond step 3 without disappearing.
+
+⸻
+
+🔒 2. Force User Flow: Mandatory Builder → Mandatory Card Settings
+
+I need to enforce a strict onboarding sequence.
+
+User must:
+
+Step 1 → Enter Workflow Builder
+Step 2 → Add or select a card
+Step 3 → Open card settings panel
+Step 4 → Complete card settings tutorial
+
+User must NOT skip these transitions.
+
+⸻
+
+🎯 Required Implementation
+
+Phase 1 — Dashboard → Builder
+
+If user has not completed onboarding:
+ • Disable other dashboard navigation
+ • Highlight only “Workflow Builder”
+ • Block clicks on other sidebar items
+ • Force user to click Builder
+
+After entering Builder → automatically start Builder Tour.
+
+⸻
+
+Phase 2 — Force Card Creation / Selection
+
+During Builder tour:
+ • Highlight “Add Card” button
+ • Prevent canvas interaction except required action
+ • User must click Add Card to proceed
+ • After card appears → automatically move to next step
+
+⸻
+
+Phase 3 — Force Open Card Settings
+ • Highlight created card
+ • Disable drag during this step
+ • Require user to click the card
+ • Automatically open settings panel
+
+If panel fails to open → programmatically trigger open.
+
+⸻
+
+Phase 4 — Card Settings Guided Tour
+
+Once settings panel opens:
+ • Lock builder interactions
+ • Run Card Settings Tour
+ • Auto-expand Basic section
+ • Then auto-enable Advanced Mode
+ • Explain everything step-by-step
+
+User cannot exit until:
+ • Tour finished
+OR
+ • Explicit Skip confirmation modal
+
+⸻
+
+🔐 Interaction Locking Rules
+
+During forced onboarding:
+ • Disable sidebar navigation
+ • Disable other builder buttons
+ • Disable canvas zoom/drag (except required step)
+ • Disable edge creation
+ • Disable node dragging when not needed
+
+Overlay must block pointer events globally except allowed element.
+
+⸻
+
+🧠 State Control
+
+Use a centralized onboarding controller:
+
+onboardingPhase:
+ • “dashboard”
+ • “builder”
+ • “card”
+ • “completed”
+
+Persist state in localStorage:
+
+“onboardingPhase”
+
+Do NOT mark as completed until:
+Card settings tour finished.
+
+⸻
+
+🧩 Stability Requirements
+ • If user refreshes page → resume from last onboarding phase.
+ • If card was deleted → recreate automatically.
+ • If builder loads async → wait before starting step.
+ • No flickering.
+ • No disappearing overlay.
+
+⸻
+
+🎯 Expected Result
+
+New user enters site →
+Only Builder is clickable →
+User forced into Builder →
+Forced to create card →
+Forced to open settings →
+Complete full guided explanation →
+Only then onboarding ends.
+
+Tour never disappears unexpectedly.

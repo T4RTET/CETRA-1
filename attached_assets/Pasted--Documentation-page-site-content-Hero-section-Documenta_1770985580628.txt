@@ -1,0 +1,179 @@
+📘 Documentation page (site content)
+
+Hero section
+
+Documentation
+
+Everything you need to start automating your crypto workflows with Cetra.
+
+Simple guides. Clear steps. No technical knowledge required.
+
+⸻
+
+Getting Started
+
+What is Cetra?
+
+Cetra is a crypto automation platform that helps you run repetitive tasks, testnets, social farming, and workflow actions automatically.
+
+You install the agent → configure tasks → Cetra runs them for you.
+
+⸻
+
+Installation
+ 1. Download the Cetra agent
+ 2. Install it locally on your computer
+ 3. Login with your account
+ 4. Choose a workflow
+ 5. Start automation
+
+The agent runs locally. Your data stays on your device.
+
+⸻
+
+Account Setup
+ • Create an account
+ • Choose a subscription plan
+ • Activate your agent
+ • Connect required wallets/accounts
+
+You can upgrade or cancel anytime.
+
+⸻
+
+Workflows
+
+What is a workflow?
+
+A workflow is a sequence of automated actions.
+
+Examples:
+ • testnet participation
+ • social tasks
+ • wallet interactions
+ • airdrop farming routines
+
+Workflows are customizable and designed to save time.
+
+⸻
+
+Security
+
+Cetra is built with a local-first architecture.
+ • No remote wallet access
+ • No private key storage
+ • Agent runs locally
+ • You control permissions
+
+Security is a core principle.
+
+⸻
+
+Subscription
+
+Plans unlock:
+ • automation limits
+ • workflow access
+ • premium features
+ • analytics
+ • referral rewards
+
+Crypto payments supported.
+
+⸻
+
+Troubleshooting
+
+Agent not starting?
+ • restart the app
+ • check internet connection
+ • update to latest version
+
+Workflow stuck?
+ • stop workflow
+ • restart agent
+ • relaunch task
+
+If issues continue → contact support.
+
+⸻
+
+Support
+
+Need help?
+
+Contact: support@cetra.app
+Community: Discord / Telegram
+
+We respond within 24 hours.
+
+⸻
+
+ℹ️ About page (site content)
+
+Hero section
+
+About Cetra
+
+We build tools that remove friction from crypto automation.
+
+Cetra exists to eliminate manual grind and give users back their time.
+
+⸻
+
+Mission
+
+Crypto users spend thousands of hours repeating simple actions.
+
+Our mission is simple:
+
+Automate the routine.
+Amplify productivity.
+Make advanced tools accessible to everyone.
+
+No coding. No complexity. Just workflows.
+
+⸻
+
+Vision
+
+We believe the future of crypto is automation-first.
+
+Cetra aims to become the operating layer for automated participation in decentralized ecosystems.
+
+From individual users → to teams → to large-scale workflow infrastructure.
+
+⸻
+
+Principles
+ • Security first
+ • Local control
+ • Transparent architecture
+ • User ownership
+ • Simplicity over complexity
+
+We design tools people actually want to use.
+
+⸻
+
+Team
+
+Cetra is built by crypto-native builders focused on infrastructure and automation.
+
+We prioritize product quality over hype.
+
+Our goal is long-term ecosystem value.
+
+⸻
+
+Community
+
+Cetra grows with its users.
+
+Join our community to:
+ • share workflows
+ • suggest features
+ • report bugs
+ • shape the roadmap
+
+We build in public.

@@ -1,0 +1,141 @@
+Rewrite the Subscription page content and pricing logic.
+
+Do NOT use account limits as a feature.
+
+Plans must NOT restrict number of accounts.
+
+Pricing must be based on power, speed, priority and advanced features.
+
+This is a full rewrite of subscription descriptions.
+
+⸻
+
+NEW PRICING PHILOSOPHY
+
+All plans support unlimited accounts.
+
+Plans differ by:
+
+• execution priority
+• automation speed tier
+• advanced analytics
+• AI assistance
+• error recovery intelligence
+• premium features
+• support level
+
+⸻
+
+PLAN STRUCTURE
+
+Starter
+
+Tagline:
+“Core automation access”
+
+Features:
+
+• unlimited accounts
+• standard execution speed
+• basic workflow builder
+• community support
+• safe mode execution
+• standard queue priority
+
+CTA:
+Start free / Upgrade
+
+⸻
+
+Pro
+
+Tagline:
+“Faster execution and smarter automation”
+
+Features:
+
+• everything in Starter
+• high-speed execution tier
+• priority queue
+• advanced error handling
+• workflow analytics
+• extended logs
+• faster retries
+• discount credits bonus
+
+Badge:
+Most popular
+
+⸻
+
+Advanced
+
+Tagline:
+“Professional automation toolkit”
+
+Features:
+
+• everything in Pro
+• AI workflow assistant
+• intelligent recovery engine
+• performance optimization
+• advanced scheduling
+• execution insights
+• priority infrastructure access
+• premium support
+
+⸻
+
+Elite
+
+Tagline:
+“Maximum power, no limits”
+
+Features:
+
+• everything unlocked
+• top execution priority
+• enterprise stability tier
+• dedicated resources
+• partner status
+• lifetime commission eligibility
+• early feature access
+• direct support channel
+
+Highlight card visually.
+
+⸻
+
+REMOVE
+
+Do NOT display:
+
+• account limits
+• workflow limits
+• artificial caps
+
+⸻
+
+ADD VALUE SECTION
+
+Below pricing cards add:
+
+“Why upgrade?”
+
+Show benefit blocks:
+
+Faster execution
+Smarter recovery
+AI assistance
+Priority infrastructure
+Premium reliability
+
+⸻
+
+STYLE
+
+Premium SaaS pricing page
+Dark futuristic theme
+Glowing cards
+Clean typography
+Conversion focused
