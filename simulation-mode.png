@@ -1,0 +1,105 @@
+import { Switch, Route } from "wouter";
+import { queryClient } from "./lib/queryClient";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { I18nProvider } from "@/i18n/i18n";
+import { GroupsProvider } from "@/contexts/GroupsContext";
+import { PlanProvider } from "@/contexts/PlanContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import { AuthProvider, useAuth } from "@/hooks/use-auth";
+import { OnboardingProvider } from "@/contexts/OnboardingContext";
+import NotFound from "@/pages/not-found";
+import Home from "@/pages/Home";
+import Terms from "@/pages/Terms";
+import Privacy from "@/pages/Privacy";
+import Login from "@/pages/Login";
+import Signup from "@/pages/Signup";
+import Docs from "@/pages/Docs";
+import About from "@/pages/About";
+import { BlogList, BlogArticlePage } from "@/pages/Blog";
+import DashboardHome from "@/pages/dashboard/DashboardHome";
+import WorkflowBuilder from "@/pages/dashboard/WorkflowBuilder";
+import Subscription from "@/pages/dashboard/Subscription";
+import Referrals from "@/pages/dashboard/Referrals";
+import SettingsPage from "@/pages/dashboard/SettingsPage";
+import AccountGroups from "@/pages/dashboard/AccountGroups";
+import GroupDetail from "@/pages/dashboard/GroupDetail";
+import CryptoCheckout from "@/pages/dashboard/CryptoCheckout";
+import { DashboardLayout } from "@/components/DashboardLayout";
+import { UpgradeModal } from "@/components/UpgradeModal";
+import { SignupPromptModal } from "@/components/SignupPromptModal";
+import { Loader2 } from "lucide-react";
+
+function DashboardRoutes() {
+  const { isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#020617] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-primary animate-spin" />
+      </div>
+    );
+  }
+
+  return (
+    <OnboardingProvider>
+      <PlanProvider>
+        <DashboardLayout>
+          <Switch>
+            <Route path="/" component={DashboardHome} />
+            <Route path="/workflows" component={WorkflowBuilder} />
+            <Route path="/groups/:id" component={GroupDetail} />
+            <Route path="/groups" component={AccountGroups} />
+            <Route path="/subscription" component={Subscription} />
+            <Route path="/checkout" component={CryptoCheckout} />
+            <Route path="/referrals" component={Referrals} />
+            <Route path="/settings" component={SettingsPage} />
+            <Route component={NotFound} />
+          </Switch>
+        </DashboardLayout>
+        <UpgradeModal />
+        <SignupPromptModal />
+      </PlanProvider>
+    </OnboardingProvider>
+  );
+}
+
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/docs" component={Docs} />
+      <Route path="/about" component={About} />
+      <Route path="/blog/:slug" component={BlogArticlePage} />
+      <Route path="/blog" component={BlogList} />
+      <Route path="/dashboard" nest component={DashboardRoutes} />
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <ThemeProvider>
+          <I18nProvider>
+            <GroupsProvider>
+              <TooltipProvider>
+                <Toaster />
+                <Router />
+              </TooltipProvider>
+            </GroupsProvider>
+          </I18nProvider>
+        </ThemeProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  );
+}
+
+export default App;

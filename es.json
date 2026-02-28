@@ -1,0 +1,119 @@
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react";
+
+export type OnboardingPhase = "dashboard" | "builder" | "card" | "completed";
+
+const ONBOARDING_KEY = "onboardingPhase";
+
+interface OnboardingContextValue {
+  phase: OnboardingPhase;
+  isOnboarding: boolean;
+  advanceToBuilder: () => void;
+  advanceToCard: () => void;
+  completeOnboarding: () => void;
+  skipOnboarding: () => void;
+  resetOnboarding: () => void;
+  allowSidebarNav: boolean;
+  allowCanvasInteraction: boolean;
+  allowCardDrag: boolean;
+  allowEdgeCreation: boolean;
+}
+
+const OnboardingContext = createContext<OnboardingContextValue>({
+  phase: "completed",
+  isOnboarding: false,
+  advanceToBuilder: () => {},
+  advanceToCard: () => {},
+  completeOnboarding: () => {},
+  skipOnboarding: () => {},
+  resetOnboarding: () => {},
+  allowSidebarNav: true,
+  allowCanvasInteraction: true,
+  allowCardDrag: true,
+  allowEdgeCreation: true,
+});
+
+export function useOnboarding() {
+  return useContext(OnboardingContext);
+}
+
+function getInitialPhase(): OnboardingPhase {
+  try {
+    const stored = localStorage.getItem(ONBOARDING_KEY);
+    if (stored === "dashboard" || stored === "builder" || stored === "card" || stored === "completed") {
+      return stored;
+    }
+  } catch {}
+  return "dashboard";
+}
+
+export function OnboardingProvider({ children }: { children: ReactNode }) {
+  const [phase, setPhase] = useState<OnboardingPhase>(getInitialPhase);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(ONBOARDING_KEY, phase);
+    } catch {}
+  }, [phase]);
+
+  const isOnboarding = phase !== "completed";
+
+  const advanceToBuilder = useCallback(() => {
+    setPhase("builder");
+  }, []);
+
+  const advanceToCard = useCallback(() => {
+    setPhase("card");
+  }, []);
+
+  const completeOnboarding = useCallback(() => {
+    setPhase("completed");
+    try {
+      localStorage.setItem("dashboardTourCompleted", "true");
+      localStorage.setItem("builderTourCompleted", "true");
+      localStorage.setItem("cardSettingsTourCompleted", "true");
+    } catch {}
+  }, []);
+
+  const skipOnboarding = useCallback(() => {
+    setPhase("completed");
+    try {
+      localStorage.setItem("dashboardTourCompleted", "true");
+      localStorage.setItem("builderTourCompleted", "true");
+      localStorage.setItem("cardSettingsTourCompleted", "true");
+    } catch {}
+  }, []);
+
+  const resetOnboarding = useCallback(() => {
+    setPhase("dashboard");
+    try {
+      localStorage.removeItem("dashboardTourCompleted");
+      localStorage.removeItem("builderTourCompleted");
+      localStorage.removeItem("cardSettingsTourCompleted");
+    } catch {}
+  }, []);
+
+  const allowSidebarNav = phase === "completed";
+  const allowCanvasInteraction = phase === "completed" || phase === "card";
+  const allowCardDrag = phase === "completed";
+  const allowEdgeCreation = phase === "completed";
+
+  return (
+    <OnboardingContext.Provider
+      value={{
+        phase,
+        isOnboarding,
+        advanceToBuilder,
+        advanceToCard,
+        completeOnboarding,
+        skipOnboarding,
+        resetOnboarding,
+        allowSidebarNav,
+        allowCanvasInteraction,
+        allowCardDrag,
+        allowEdgeCreation,
+      }}
+    >
+      {children}
+    </OnboardingContext.Provider>
+  );
+}

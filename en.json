@@ -1,0 +1,210 @@
+import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+
+export interface GroupAccount {
+  id: string;
+  name: string;
+}
+
+export interface AccountGroup {
+  id: string;
+  name: string;
+  accountIds: string[];
+  lastActivity: string;
+  activeWorkflows: number;
+  successRate: number;
+  status: "success" | "partial" | "failed";
+  executions: {
+    id: string;
+    status: "success" | "partial" | "failed";
+    workflow: string;
+    time: string;
+    accounts: number;
+  }[];
+}
+
+const ALL_ACCOUNTS: GroupAccount[] = Array.from({ length: 400 }, (_, i) => ({
+  id: `acc_${String(i + 1).padStart(3, "0")}`,
+  name: `Account #${i + 1}`,
+}));
+
+const INITIAL_GROUPS: AccountGroup[] = [
+  {
+    id: "grp_1",
+    name: "Group #1",
+    accountIds: ["acc_001", "acc_002", "acc_003", "acc_004", "acc_005"],
+    lastActivity: "2 min ago",
+    activeWorkflows: 2,
+    successRate: 87,
+    status: "partial",
+    executions: [
+      { id: "ex_1", status: "success", workflow: "Auto-Swap ETH/USDC", time: "5 min ago", accounts: 5 },
+      { id: "ex_2", status: "partial", workflow: "LP Rebalance", time: "1 hr ago", accounts: 5 },
+    ],
+  },
+  {
+    id: "grp_2",
+    name: "Group #2",
+    accountIds: ["acc_006", "acc_007", "acc_008", "acc_009", "acc_010"],
+    lastActivity: "30 min ago",
+    activeWorkflows: 1,
+    successRate: 92,
+    status: "success",
+    executions: [
+      { id: "ex_3", status: "success", workflow: "Airdrop Claim Loop", time: "30 min ago", accounts: 5 },
+    ],
+  },
+  {
+    id: "grp_3",
+    name: "Group #3",
+    accountIds: ["acc_011", "acc_012", "acc_013"],
+    lastActivity: "1 hr ago",
+    activeWorkflows: 1,
+    successRate: 45,
+    status: "failed",
+    executions: [
+      { id: "ex_4", status: "failed", workflow: "Flash Loan Arb", time: "1 hr ago", accounts: 3 },
+    ],
+  },
+];
+
+const STORAGE_KEY = "cetra_groups";
+
+function loadGroups(): AccountGroup[] {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) return JSON.parse(stored);
+  } catch {}
+  return INITIAL_GROUPS;
+}
+
+function saveGroups(groups: AccountGroup[]) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(groups));
+  } catch {}
+}
+
+let groupIdCounter = 100;
+
+interface GroupsContextValue {
+  groups: AccountGroup[];
+  allAccounts: GroupAccount[];
+  createGroup: (name: string) => void;
+  renameGroup: (id: string, name: string) => void;
+  deleteGroup: (id: string) => void;
+  addAccountToGroup: (groupId: string, accountId: string) => void;
+  removeAccountFromGroup: (groupId: string, accountId: string) => void;
+  moveAccountToGroup: (accountId: string, fromGroupId: string, toGroupId: string) => void;
+  getUnassignedAccounts: () => GroupAccount[];
+  getGroupAccounts: (groupId: string) => GroupAccount[];
+  getGroupById: (id: string) => AccountGroup | undefined;
+}
+
+const GroupsContext = createContext<GroupsContextValue | null>(null);
+
+export function GroupsProvider({ children }: { children: ReactNode }) {
+  const [groups, setGroups] = useState<AccountGroup[]>(loadGroups);
+
+  const persist = useCallback((newGroups: AccountGroup[]) => {
+    setGroups(newGroups);
+    saveGroups(newGroups);
+  }, []);
+
+  const createGroup = useCallback((name: string) => {
+    const newGroup: AccountGroup = {
+      id: `grp_${++groupIdCounter}`,
+      name,
+      accountIds: [],
+      lastActivity: "Just now",
+      activeWorkflows: 0,
+      successRate: 0,
+      status: "success",
+      executions: [],
+    };
+    persist([...groups, newGroup]);
+  }, [groups, persist]);
+
+  const renameGroup = useCallback((id: string, name: string) => {
+    persist(groups.map(g => g.id === id ? { ...g, name } : g));
+  }, [groups, persist]);
+
+  const deleteGroup = useCallback((id: string) => {
+    persist(groups.filter(g => g.id !== id));
+  }, [groups, persist]);
+
+  const addAccountToGroup = useCallback((groupId: string, accountId: string) => {
+    persist(
+      groups.map(g => {
+        if (g.id === groupId && !g.accountIds.includes(accountId)) {
+          return { ...g, accountIds: [...g.accountIds, accountId] };
+        }
+        if (g.id !== groupId && g.accountIds.includes(accountId)) {
+          return { ...g, accountIds: g.accountIds.filter(a => a !== accountId) };
+        }
+        return g;
+      })
+    );
+  }, [groups, persist]);
+
+  const removeAccountFromGroup = useCallback((groupId: string, accountId: string) => {
+    persist(
+      groups.map(g =>
+        g.id === groupId ? { ...g, accountIds: g.accountIds.filter(a => a !== accountId) } : g
+      )
+    );
+  }, [groups, persist]);
+
+  const moveAccountToGroup = useCallback((accountId: string, fromGroupId: string, toGroupId: string) => {
+    persist(
+      groups.map(g => {
+        if (g.id === fromGroupId) {
+          return { ...g, accountIds: g.accountIds.filter(a => a !== accountId) };
+        }
+        if (g.id === toGroupId && !g.accountIds.includes(accountId)) {
+          return { ...g, accountIds: [...g.accountIds, accountId] };
+        }
+        return g;
+      })
+    );
+  }, [groups, persist]);
+
+  const getUnassignedAccounts = useCallback(() => {
+    const assignedIds = new Set(groups.flatMap(g => g.accountIds));
+    return ALL_ACCOUNTS.filter(a => !assignedIds.has(a.id));
+  }, [groups]);
+
+  const getGroupAccounts = useCallback((groupId: string) => {
+    const group = groups.find(g => g.id === groupId);
+    if (!group) return [];
+    return ALL_ACCOUNTS.filter(a => group.accountIds.includes(a.id));
+  }, [groups]);
+
+  const getGroupById = useCallback((id: string) => {
+    return groups.find(g => g.id === id);
+  }, [groups]);
+
+  return (
+    <GroupsContext.Provider
+      value={{
+        groups,
+        allAccounts: ALL_ACCOUNTS,
+        createGroup,
+        renameGroup,
+        deleteGroup,
+        addAccountToGroup,
+        removeAccountFromGroup,
+        moveAccountToGroup,
+        getUnassignedAccounts,
+        getGroupAccounts,
+        getGroupById,
+      }}
+    >
+      {children}
+    </GroupsContext.Provider>
+  );
+}
+
+export function useGroups() {
+  const ctx = useContext(GroupsContext);
+  if (!ctx) throw new Error("useGroups must be used within GroupsProvider");
+  return ctx;
+}

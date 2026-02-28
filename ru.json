@@ -1,0 +1,313 @@
+export interface TemplateBlock {
+  type: string;
+  label: string;
+  icon: string;
+  enabled: boolean;
+  config: Record<string, any>;
+}
+
+export interface ProjectTemplate {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  activityType: string;
+  logoColor: string;
+  logoIcon: string;
+  blocks: TemplateBlock[];
+  defaultSettings: Record<string, any>;
+}
+
+export interface TemplateCategory {
+  id: string;
+  nameKey: string;
+  descKey: string;
+  icon: string;
+  color: string;
+  available: boolean;
+}
+
+export const TEMPLATE_CATEGORIES: TemplateCategory[] = [
+  { id: "social", nameKey: "tmpl.cat.social", descKey: "tmpl.cat.socialDesc", icon: "globe", color: "#14b8a6", available: true },
+  { id: "testnet", nameKey: "tmpl.cat.testnet", descKey: "tmpl.cat.testnetDesc", icon: "wallet", color: "#3b82f6", available: true },
+  { id: "airdrop", nameKey: "tmpl.cat.airdrop", descKey: "tmpl.cat.airdropDesc", icon: "gift", color: "#8b5cf6", available: false },
+  { id: "farming", nameKey: "tmpl.cat.farming", descKey: "tmpl.cat.farmingDesc", icon: "repeat", color: "#f59e0b", available: false },
+];
+
+const SOCIAL_TEMPLATES: ProjectTemplate[] = [
+  {
+    id: "konnex",
+    name: "Konnex Points Program",
+    category: "social",
+    description: "tmpl.konnex.desc",
+    activityType: "tmpl.type.pointsFarming",
+    logoColor: "#6366f1",
+    logoIcon: "zap",
+    blocks: [
+      { type: "wallet", label: "Connect Wallet", icon: "wallet", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "website", label: "Connect Twitter (X)", icon: "globe", enabled: true, config: { linkUrl: "https://twitter.com", executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "script", label: "Like + Comment + Repost", icon: "code", enabled: true, config: { executionMode: "sequential", randomize: true, errorHandling: "skip", retryAttempts: 2, delay: 5, delayUnit: "s" } },
+      { type: "website", label: "Follow X", icon: "globe", enabled: true, config: { linkUrl: "", executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "website", label: "Join Discord", icon: "globe", enabled: true, config: { linkUrl: "", executionMode: "sequential", errorHandling: "retry", retryAttempts: 2 } },
+      { type: "repeat", label: "Daily Check-in", icon: "repeat", enabled: true, config: { interval: 24, intervalUnit: "h", duration: 30, executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "script", label: "Refer Friends", icon: "code", enabled: true, config: { executionMode: "sequential", errorHandling: "skip", retryAttempts: 1 } },
+      { type: "logging", label: "Leaderboard Tracking", icon: "filetext", enabled: true, config: { executionMode: "sequential", errorHandling: "skip", retryAttempts: 1 } },
+    ],
+    defaultSettings: { randomize: true, errorHandling: "retry", retryAttempts: 3, interval: 24, intervalUnit: "h", duration: 30 },
+  },
+  {
+    id: "zealy",
+    name: "Zealy Campaign",
+    category: "social",
+    description: "tmpl.zealy.desc",
+    activityType: "tmpl.type.questCompletion",
+    logoColor: "#ec4899",
+    logoIcon: "zap",
+    blocks: [
+      { type: "wallet", label: "Connect Wallet", icon: "wallet", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "website", label: "Connect Zealy Account", icon: "globe", enabled: true, config: { linkUrl: "https://zealy.io", executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "script", label: "Complete Quests", icon: "code", enabled: true, config: { executionMode: "sequential", randomize: true, errorHandling: "skip", retryAttempts: 2 } },
+      { type: "repeat", label: "Daily Quest Check", icon: "repeat", enabled: true, config: { interval: 12, intervalUnit: "h", duration: 14, executionMode: "sequential", errorHandling: "retry", retryAttempts: 2 } },
+    ],
+    defaultSettings: { randomize: true, errorHandling: "retry", retryAttempts: 2 },
+  },
+  {
+    id: "galxe",
+    name: "Galxe Campaign",
+    category: "social",
+    description: "tmpl.galxe.desc",
+    activityType: "tmpl.type.credentialFarming",
+    logoColor: "#f97316",
+    logoIcon: "globe",
+    blocks: [
+      { type: "wallet", label: "Connect Wallet", icon: "wallet", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "website", label: "Link Galxe Profile", icon: "globe", enabled: true, config: { linkUrl: "https://galxe.com", executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "script", label: "Claim Credentials", icon: "code", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "delay", label: "Wait for Verification", icon: "clock", enabled: true, config: { interval: 2, intervalUnit: "h", executionMode: "sequential", errorHandling: "skip", retryAttempts: 1 } },
+      { type: "logging", label: "Track OAT Claims", icon: "filetext", enabled: true, config: { executionMode: "sequential", errorHandling: "skip", retryAttempts: 1 } },
+    ],
+    defaultSettings: { randomize: false, errorHandling: "retry", retryAttempts: 3 },
+  },
+  {
+    id: "twitter-engage",
+    name: "Twitter Engagement Campaign",
+    category: "social",
+    description: "tmpl.twitter.desc",
+    activityType: "tmpl.type.socialEngagement",
+    logoColor: "#1d9bf0",
+    logoIcon: "globe",
+    blocks: [
+      { type: "website", label: "Connect Twitter (X)", icon: "globe", enabled: true, config: { linkUrl: "https://twitter.com", executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "script", label: "Auto Like Posts", icon: "code", enabled: true, config: { executionMode: "sequential", randomize: true, errorHandling: "skip", retryAttempts: 2 } },
+      { type: "script", label: "Auto Retweet", icon: "code", enabled: true, config: { executionMode: "sequential", randomize: true, errorHandling: "skip", retryAttempts: 2 } },
+      { type: "randomDelay", label: "Random Delay", icon: "clock", enabled: true, config: { interval: 1, intervalUnit: "h", duration: 3, executionMode: "sequential", randomize: true, errorHandling: "skip", retryAttempts: 1 } },
+      { type: "repeat", label: "Daily Engagement Loop", icon: "repeat", enabled: true, config: { interval: 6, intervalUnit: "h", duration: 7, executionMode: "sequential", errorHandling: "retry", retryAttempts: 2 } },
+    ],
+    defaultSettings: { randomize: true, errorHandling: "skip", retryAttempts: 2 },
+  },
+  {
+    id: "discord-farm",
+    name: "Discord Role Farming",
+    category: "social",
+    description: "tmpl.discord.desc",
+    activityType: "tmpl.type.roleFarming",
+    logoColor: "#5865f2",
+    logoIcon: "users",
+    blocks: [
+      { type: "website", label: "Join Discord Server", icon: "globe", enabled: true, config: { linkUrl: "", executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "script", label: "Verify Wallet", icon: "code", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "script", label: "Send Messages", icon: "code", enabled: true, config: { executionMode: "sequential", randomize: true, errorHandling: "skip", retryAttempts: 2, delay: 30, delayUnit: "s" } },
+      { type: "repeat", label: "Daily Activity", icon: "repeat", enabled: true, config: { interval: 8, intervalUnit: "h", duration: 14, executionMode: "sequential", errorHandling: "retry", retryAttempts: 2 } },
+    ],
+    defaultSettings: { randomize: true, errorHandling: "retry", retryAttempts: 2 },
+  },
+];
+
+const TESTNET_TEMPLATES: ProjectTemplate[] = [
+  {
+    id: "pharos",
+    name: "Pharos Testnet",
+    category: "testnet",
+    description: "tmpl.pharos.desc",
+    activityType: "tmpl.type.testnetActivity",
+    logoColor: "#3b82f6",
+    logoIcon: "wallet",
+    blocks: [
+      { type: "wallet", label: "Connect Wallet", icon: "wallet", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3, rpc: "", chainId: "" } },
+      { type: "script", label: "Faucet Claim", icon: "code", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 5, gasLimit: "auto", gasPrice: "auto" } },
+      { type: "swap", label: "Swap Tokens", icon: "swap", enabled: true, config: { executionMode: "sequential", randomize: true, errorHandling: "retry", retryAttempts: 3, gasLimit: "auto", slippage: 0.5 } },
+      { type: "wallet", label: "Send Transaction", icon: "wallet", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3, gasLimit: "auto", gasPrice: "auto" } },
+      { type: "swap", label: "Bridge", icon: "swap", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "script", label: "NFT Mint", icon: "code", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3, gasLimit: "auto" } },
+      { type: "repeat", label: "Repeat X Transactions Daily", icon: "repeat", enabled: true, config: { interval: 4, intervalUnit: "h", duration: 7, executionMode: "sequential", randomize: true, errorHandling: "retry", retryAttempts: 2 } },
+      { type: "logging", label: "Activity Counter", icon: "filetext", enabled: true, config: { executionMode: "sequential", errorHandling: "skip", retryAttempts: 1 } },
+    ],
+    defaultSettings: { rpc: "", chainId: "", gasControl: "auto", randomize: true, errorHandling: "retry", retryAttempts: 3, interval: 4, intervalUnit: "h", duration: 7 },
+  },
+  {
+    id: "layerzero",
+    name: "LayerZero Testnet",
+    category: "testnet",
+    description: "tmpl.layerzero.desc",
+    activityType: "tmpl.type.crossChain",
+    logoColor: "#10b981",
+    logoIcon: "swap",
+    blocks: [
+      { type: "wallet", label: "Connect Wallet", icon: "wallet", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "swap", label: "Bridge Assets (Cross-chain)", icon: "swap", enabled: true, config: { executionMode: "sequential", randomize: true, errorHandling: "retry", retryAttempts: 3 } },
+      { type: "delay", label: "Wait for Confirmation", icon: "clock", enabled: true, config: { interval: 5, intervalUnit: "m", executionMode: "sequential", errorHandling: "skip", retryAttempts: 1 } },
+      { type: "repeat", label: "Multi-chain Loop", icon: "repeat", enabled: true, config: { interval: 6, intervalUnit: "h", duration: 14, executionMode: "sequential", errorHandling: "retry", retryAttempts: 2 } },
+    ],
+    defaultSettings: { randomize: true, errorHandling: "retry", retryAttempts: 3 },
+  },
+  {
+    id: "starknet",
+    name: "Starknet Activity",
+    category: "testnet",
+    description: "tmpl.starknet.desc",
+    activityType: "tmpl.type.l2Activity",
+    logoColor: "#8b5cf6",
+    logoIcon: "code",
+    blocks: [
+      { type: "wallet", label: "Deploy Account", icon: "wallet", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "swap", label: "Swap on DEX", icon: "swap", enabled: true, config: { executionMode: "sequential", randomize: true, errorHandling: "retry", retryAttempts: 3, slippage: 1 } },
+      { type: "script", label: "Provide Liquidity", icon: "code", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 2 } },
+      { type: "script", label: "Mint NFT", icon: "code", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "repeat", label: "Weekly Activity", icon: "repeat", enabled: true, config: { interval: 24, intervalUnit: "h", duration: 30, executionMode: "sequential", errorHandling: "retry", retryAttempts: 2 } },
+    ],
+    defaultSettings: { randomize: true, errorHandling: "retry", retryAttempts: 3 },
+  },
+  {
+    id: "scroll",
+    name: "Scroll Testnet",
+    category: "testnet",
+    description: "tmpl.scroll.desc",
+    activityType: "tmpl.type.l2Activity",
+    logoColor: "#ef4444",
+    logoIcon: "wallet",
+    blocks: [
+      { type: "wallet", label: "Connect Wallet", icon: "wallet", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "swap", label: "Bridge to Scroll", icon: "swap", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "swap", label: "Swap Tokens", icon: "swap", enabled: true, config: { executionMode: "sequential", randomize: true, errorHandling: "retry", retryAttempts: 3 } },
+      { type: "delay", label: "Cooldown Period", icon: "clock", enabled: true, config: { interval: 2, intervalUnit: "h", executionMode: "sequential", errorHandling: "skip", retryAttempts: 1 } },
+      { type: "repeat", label: "Daily Transactions", icon: "repeat", enabled: true, config: { interval: 12, intervalUnit: "h", duration: 14, executionMode: "sequential", errorHandling: "retry", retryAttempts: 2 } },
+    ],
+    defaultSettings: { randomize: true, errorHandling: "retry", retryAttempts: 3 },
+  },
+  {
+    id: "base",
+    name: "Base Ecosystem Tasks",
+    category: "testnet",
+    description: "tmpl.base.desc",
+    activityType: "tmpl.type.ecosystemTasks",
+    logoColor: "#2563eb",
+    logoIcon: "globe",
+    blocks: [
+      { type: "wallet", label: "Connect Wallet", icon: "wallet", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "swap", label: "Bridge to Base", icon: "swap", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "swap", label: "Trade on Aerodrome", icon: "swap", enabled: true, config: { executionMode: "sequential", randomize: true, errorHandling: "retry", retryAttempts: 3 } },
+      { type: "script", label: "Mint Base NFT", icon: "code", enabled: true, config: { executionMode: "sequential", errorHandling: "retry", retryAttempts: 3 } },
+      { type: "repeat", label: "Recurring Tasks", icon: "repeat", enabled: true, config: { interval: 8, intervalUnit: "h", duration: 14, executionMode: "sequential", errorHandling: "retry", retryAttempts: 2 } },
+    ],
+    defaultSettings: { randomize: true, errorHandling: "retry", retryAttempts: 3 },
+  },
+];
+
+export const ALL_TEMPLATES: ProjectTemplate[] = [...SOCIAL_TEMPLATES, ...TESTNET_TEMPLATES];
+
+export function getTemplatesByCategory(categoryId: string): ProjectTemplate[] {
+  return ALL_TEMPLATES.filter(t => t.category === categoryId);
+}
+
+export function getTemplateById(id: string): ProjectTemplate | undefined {
+  return ALL_TEMPLATES.find(t => t.id === id);
+}
+
+const CUSTOM_TEMPLATES_KEY = "cetra_custom_templates";
+
+export function loadCustomTemplates(): ProjectTemplate[] {
+  try {
+    const raw = localStorage.getItem(CUSTOM_TEMPLATES_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+export function saveCustomTemplate(template: ProjectTemplate) {
+  const existing = loadCustomTemplates();
+  existing.push(template);
+  localStorage.setItem(CUSTOM_TEMPLATES_KEY, JSON.stringify(existing));
+}
+
+export function deleteCustomTemplate(id: string) {
+  const existing = loadCustomTemplates().filter(t => t.id !== id);
+  localStorage.setItem(CUSTOM_TEMPLATES_KEY, JSON.stringify(existing));
+}
+
+export interface WorkflowNodeData {
+  id: string;
+  type: string;
+  label: string;
+  icon: string;
+  x: number;
+  y: number;
+  config: Record<string, any>;
+  ports: { id: string; type: "input" | "output" }[];
+  enabled: boolean;
+}
+
+export interface ConnectionData {
+  id: string;
+  fromNode: string;
+  fromPort: string;
+  toNode: string;
+  toPort: string;
+}
+
+let _idCounter = 0;
+function genId() {
+  return `node_${Date.now()}_${++_idCounter}`;
+}
+
+export function buildFromTemplate(template: ProjectTemplate): { nodes: WorkflowNodeData[]; connections: ConnectionData[] } {
+  const nodes: WorkflowNodeData[] = [];
+  const connections: ConnectionData[] = [];
+
+  const COLS = 4;
+  const X_START = 80;
+  const Y_START = 100;
+  const X_GAP = 280;
+  const Y_GAP = 140;
+
+  template.blocks.forEach((block, i) => {
+    const col = i % COLS;
+    const row = Math.floor(i / COLS);
+    const node: WorkflowNodeData = {
+      id: genId(),
+      type: block.type,
+      label: block.label,
+      icon: block.icon,
+      x: X_START + col * X_GAP,
+      y: Y_START + row * Y_GAP,
+      config: {
+        ...block.config,
+        ...template.defaultSettings,
+        ...block.config,
+      },
+      ports: [{ id: "in", type: "input" }, { id: "out", type: "output" }],
+      enabled: block.enabled,
+    };
+    nodes.push(node);
+  });
+
+  for (let i = 0; i < nodes.length - 1; i++) {
+    connections.push({
+      id: `conn_${Date.now()}_${i}`,
+      fromNode: nodes[i].id,
+      fromPort: "out",
+      toNode: nodes[i + 1].id,
+      toPort: "in",
+    });
+  }
+
+  return { nodes, connections };
+}

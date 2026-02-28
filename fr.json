@@ -1,0 +1,116 @@
+import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+import { useAuth } from "@/hooks/use-auth";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+
+interface PlanContextValue {
+  isFreePlan: boolean;
+  isGuest: boolean;
+  remainingTrialRuns: number;
+  showUpgradeModal: boolean;
+  openUpgradeModal: (reason?: string) => void;
+  closeUpgradeModal: () => void;
+  upgradeReason: string;
+  showSignupModal: boolean;
+  openSignupModal: (reason?: string) => void;
+  closeSignupModal: () => void;
+  signupReason: string;
+  checkAndUseTrialRun: () => Promise<boolean>;
+  canExecute: boolean;
+  requireAuth: (reason?: string) => boolean;
+}
+
+const PlanContext = createContext<PlanContextValue | null>(null);
+
+const FREE_TRIAL_LIMIT = 3;
+
+export function PlanProvider({ children }: { children: ReactNode }) {
+  const { user, isGuest } = useAuth();
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [upgradeReason, setUpgradeReason] = useState("");
+  const [showSignupModal, setShowSignupModal] = useState(false);
+  const [signupReason, setSignupReason] = useState("");
+
+  const isFreePlan = !user || user.plan === "free";
+  const remainingTrialRuns = user ? Math.max(0, FREE_TRIAL_LIMIT - (user.freeTrialRuns || 0)) : FREE_TRIAL_LIMIT;
+  const canExecute = !isGuest && (!isFreePlan || remainingTrialRuns > 0);
+
+  const openUpgradeModal = useCallback((reason?: string) => {
+    setUpgradeReason(reason || "");
+    setShowUpgradeModal(true);
+  }, []);
+
+  const closeUpgradeModal = useCallback(() => {
+    setShowUpgradeModal(false);
+    setUpgradeReason("");
+  }, []);
+
+  const openSignupModal = useCallback((reason?: string) => {
+    setSignupReason(reason || "default");
+    setShowSignupModal(true);
+  }, []);
+
+  const closeSignupModal = useCallback(() => {
+    setShowSignupModal(false);
+    setSignupReason("");
+  }, []);
+
+  const requireAuth = useCallback((reason?: string): boolean => {
+    if (isGuest) {
+      openSignupModal(reason || "default");
+      return false;
+    }
+    return true;
+  }, [isGuest, openSignupModal]);
+
+  const checkAndUseTrialRun = useCallback(async (): Promise<boolean> => {
+    if (isGuest) {
+      openSignupModal("execute");
+      return false;
+    }
+    if (!isFreePlan) return true;
+    if (remainingTrialRuns <= 0) {
+      openUpgradeModal("trialExhausted");
+      return false;
+    }
+    try {
+      const res = await apiRequest("POST", "/api/use-trial-run");
+      const data = await res.json();
+      if (data.allowed) {
+        queryClient.invalidateQueries({ queryKey: ["/api/me"] });
+        return true;
+      }
+      openUpgradeModal("trialExhausted");
+      return false;
+    } catch {
+      openUpgradeModal("trialExhausted");
+      return false;
+    }
+  }, [isGuest, isFreePlan, remainingTrialRuns, openUpgradeModal, openSignupModal]);
+
+  return (
+    <PlanContext.Provider value={{
+      isFreePlan,
+      isGuest,
+      remainingTrialRuns,
+      showUpgradeModal,
+      openUpgradeModal,
+      closeUpgradeModal,
+      upgradeReason,
+      showSignupModal,
+      openSignupModal,
+      closeSignupModal,
+      signupReason,
+      checkAndUseTrialRun,
+      canExecute,
+      requireAuth,
+    }}>
+      {children}
+    </PlanContext.Provider>
+  );
+}
+
+export function usePlan() {
+  const ctx = useContext(PlanContext);
+  if (!ctx) throw new Error("usePlan must be used within PlanProvider");
+  return ctx;
+}
